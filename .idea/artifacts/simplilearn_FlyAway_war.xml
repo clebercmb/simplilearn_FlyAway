@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="simplilearn_FlyAway:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>simplilearn_FlyAway</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="simplilearn_FlyAway-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="simplilearn_FlyAway:war exploded" />
+    </root>
+  </artifact>
+</component>

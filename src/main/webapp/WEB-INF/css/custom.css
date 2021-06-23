@@ -1,0 +1,148 @@
+/*.navbar-default {
+}
+
+.navbar-nav>li>a:hover,
+.navbar-nav>li>a:focus{
+    background: #000000;
+    color:white;
+
+}*/
+
+:root {
+    --primary: #f6f2f2;
+    --secondary: #ffffff;
+}
+
+
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/*
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}*/
+
+.login {
+    width: 400px;
+    margin: 50px auto;
+}
+
+.nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+}
+
+.nav-header .nav-header-left,
+.nav-header .nav-header-right{
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-header .nav-header-left>a,
+.nav-header .nav-header-right>a{
+    color: #000000;
+}
+
+.nav-header .nav-header-left>a:hover,
+.nav-header .nav-header-right>a:hover{
+    color: darkgrey;
+}
+
+
+/************
+Booking
+************/
+
+.container-search-flights-list {
+    width: 1000px;
+    margin: 0 auto;
+
+}
+
+.container-flights {
+    width: 100%;
+    margin: 100px auto 0;
+    background: var(--primary);
+    padding: 20px 10px;
+
+    border-radius: 10px;
+}
+
+.container-flights * {
+    margin: 0;
+}
+
+.container-flights > div:nth-child(n):not(:first-child) {
+    display: flex;
+    height: 80px;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.container-flights label,
+.container-flights input[type=text],
+.container-flights input[type=date],
+.container-flights input[type=submit],
+.container-flights select,
+.container-flights button{
+   width: 306px;
+
+}
+
+.container-flights input[type=text],
+.container-flights input[type=date],
+.container-flights input[type=submit],
+.container-flights select,
+.container-flights button{
+    height: 35px;
+}
+
+
+#type-trip > label{
+    width: 100px;
+}
+
+#type-trip label{
+    margin-left: 10px;
+}
+
+
+/**
+* Sign in / Sign up
+*/
+.login {
+    background: var(--primary);
+    height: 330px;
+    width: 500px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+
+/**
+* Flights List Dashboard
+*/
+.container-flights-list {
+    background: var(--primary);
+    margin: 30px auto;
+    width: 100%;
+}
+
+/*
+.table-flight-list-container {
+    display: block;
+    margin: 1em auto;
+    width: 100%;
+    max-width: 600px;
+    border-collapse: collapse;
+}*/
