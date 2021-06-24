@@ -1,6 +1,9 @@
 package com.example.simplilearn.flyaway.modules.home;
 
+import com.example.simplilearn.flyaway.modules.flight.dto.FlightDto;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -18,11 +21,7 @@ public class HomeController {
         return "login";
     }
 
-    @RequestMapping("flight-dashboard")
-    public String showFlightDashBoard() {
-        System.out.println("show flight_dashboard requested");
-        return "flightDashboard";
-    }
+
 
     @RequestMapping("booking")
     public String showBooking() {
@@ -42,10 +41,6 @@ public class HomeController {
         return "profile";
     }
 
-    @RequestMapping("flight")
-    public String showFlight() {
-        System.out.println("showFlight");
-        return "flight";
-    }
+
 
 }

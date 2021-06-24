@@ -19,34 +19,25 @@
 <%@include file="header.jsp"%>
 
 <div class="container-place-dashboard">
-    <h1>Flight Dashboard</h1>
+    <h1>Place Dashboard</h1>
     <div class="container-place-dashboard">
         <table id="table-container">
             <thead>
             <tr class="flex-table header">
-                <th class="flex-row">From</th>
-                <th class="flex-row">To</th>
-                <th class="flex-row">Flight Number</th>
-                <th class="flex-row">Departure time</th>
-                <th class="flex-row">Arrive time</th>
-                <th class="flex-row">Ticket Price</th>
-                <th class="flex-row">Capacity</th>
+                <th class="flex-row">Id</th>
+                <th class="flex-row">Name</th>
                 <th class="flex-row">Action 1</th>
                 <th class="flex-row">Action 2</th>
             </tr>
             </thead>
             <tbody>
-                <c:forEach var="flight"  items="${flights}">
+                <c:forEach var="place"  items="${places}">
                     <tr class="flex-table">
-                        <td class="flex-row"><a href="booking" title="Click here to book a trip">${flight.from}</a></td>
-                        <td class="flex-row">${flight.to}</td>
-                        <td class="flex-row">${flight.flightNumber}</td>
-                        <td class="flex-row">${flight.departureTime}</td>
-                        <td class="flex-row">${flight.arriveTime}</td>
-                        <td class="flex-row">${flight.ticketPrice}</td>
-                        <td class="flex-row">${flight.seatsCapacity }</td>
-                        <td class="flex-row"><a class="btn btn-warning" href="<%=request.getContextPath()%>/updateFlight?id=<c:out value="${flight.flightId}"/>">Edit</a></td>
-                        <td class="flex-row"><a class="btn btn-danger" href="<%=request.getContextPath()%>/deleteFlight?id=<c:out value="${flight.flightId}"/>">Delete</a></td>
+                        <td class="flex-row">${place.placeId}</td>
+                        <td class="flex-row">${place.name}</td>
+
+                        <td class="flex-row"><a class="btn btn-warning" href="<%=request.getContextPath()%>/updatePlace?id=<c:out value="${place.placeId}"/>">Edit</a></td>
+                        <td class="flex-row"><a class="btn btn-danger" href="<%=request.getContextPath()%>/deletePlace?id=<c:out value="${place.placeId}"/>">Delete</a></td>
 
                     </tr>
                 </c:forEach>

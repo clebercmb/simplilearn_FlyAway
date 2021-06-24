@@ -237,7 +237,7 @@ th {
 /**
 *  Flights
 */
-.container-flight {
+.container-flight, .container-place {
   width: 500px;
   padding-bottom: 30px;
   margin: 40px auto;
@@ -252,7 +252,7 @@ th {
     border-radius: 10px 10px 0 0;
   }
 
-  .container-flight-data {
+  .container-flight-data,  .container-place-data{
     margin: 10px;
     div {
       label {

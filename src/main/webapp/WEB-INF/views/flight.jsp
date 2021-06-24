@@ -1,5 +1,6 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="sform" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,9 +19,9 @@
 
     <%@include file="header.jsp"%>
 
-    <div class="container-flight">
+    <div class="container-place">
         <h1>Flight</h1>
-         <form class="container-flight-data">
+         <sform:form method="post" action="createFlight" modelAttribute="placeCommand" class="container-place-data">
              <div>
                  <label for="flightNumber">Flight Number</label>
                  <input type="text" id="flightNumber" name="flightNumber"/>
@@ -59,7 +60,7 @@
 
              <input type="submit"/>
 
-         </form>
+         </sform:form>
 
     </div>
     <!-- JavaScript Bundle with Popper -->
