@@ -3,9 +3,12 @@ package com.example.simplilearn.flyaway.modules.flight.domain;
 
 import com.example.simplilearn.flyaway.modules.flight.adapter.in.command.FlightCommand;
 import com.example.simplilearn.flyaway.modules.flight.dto.FlightDto;
+import com.example.simplilearn.flyaway.modules.places.domain.Place;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 
 @Entity
@@ -20,11 +23,19 @@ public class Flight {
     @Column(name="flight_number", nullable = false, length = 30)
     private String flightNumber;
 
-    @Column(name="from_city", nullable = false, length = 30)
-    private String from;
+    //@Column(name="from_city", nullable = false, length = 30)
+    //private String from;
 
-    @Column(name="to_city", nullable = false, length = 30)
-    private String to;
+    @OneToOne(targetEntity = Place.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "place_id_from", referencedColumnName = "place_id")
+    private Place from;
+
+    @OneToOne(targetEntity = Place.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "place_id_to", referencedColumnName = "place_id")
+    private Place to;
+
+    //@Column(name="to_city", nullable = false, length = 30)
+    //private String to;
 
     @Column(name="departure_time", nullable = false)
     private LocalDateTime departureTime;
@@ -45,8 +56,8 @@ public class Flight {
 
     public Flight(FlightDto flightDto) {
         this.flightNumber = flightDto.getFlightNumber();
-        this.from = flightDto.getFrom();
-        this.to = flightDto.getTo();
+        this.from = new Place(flightDto.getFrom());
+        this.to = new Place(flightDto.getTo());
         this.departureTime = flightDto.getDepartureTime();
         this.arriveTime = flightDto.getArriveTime();
         this.seatsCapacity = flightDto.getSeatsCapacity();
@@ -55,9 +66,10 @@ public class Flight {
 
     public Flight(FlightCommand flightCommand) {
 
+        this.flightId = flightCommand.getFlightId();
         this.flightNumber = flightCommand.getFlightNumber();
-        this.from = flightCommand.getFrom();
-        this.to = flightCommand.getTo();
+        this.from = new Place(flightCommand.getPlaceIdFrom(), flightCommand.getFrom());
+        this.to = new Place(flightCommand.getPlaceIdTo(), flightCommand.getTo());
         this.departureTime = LocalDateTime.parse(flightCommand.getDepartureTime());
         this.arriveTime = LocalDateTime.parse(flightCommand.getArriveTime());
         this.seatsCapacity = flightCommand.getSeatsCapacity();
@@ -65,7 +77,7 @@ public class Flight {
     }
 
 
-    public Flight(int flightId, String flightNumber, String from, String to, LocalDateTime departureTime, LocalDateTime arriveTime, int seatsCapacity, float ticketPrice) {
+    public Flight(int flightId, String flightNumber, Place from, Place to, LocalDateTime departureTime, LocalDateTime arriveTime, int seatsCapacity, float ticketPrice) {
         this.flightId = flightId;
         this.flightNumber = flightNumber;
         this.from = from;
@@ -92,19 +104,19 @@ public class Flight {
         this.flightNumber = flightNumber;
     }
 
-    public String getFrom() {
+    public Place getFrom() {
         return from;
     }
 
-    public void setFrom(String from) {
+    public void setFrom(Place from) {
         this.from = from;
     }
 
-    public String getTo() {
+    public Place getTo() {
         return to;
     }
 
-    public void setTo(String to) {
+    public void setTo(Place to) {
         this.to = to;
     }
 
@@ -144,8 +156,8 @@ public class Flight {
         FlightDto flightDto = new FlightDto();
         flightDto.setFlightId(this.getFlightId());
         flightDto.setFlightNumber(this.getFlightNumber());
-        flightDto.setFrom(this.getFrom());
-        flightDto.setTo(this.getTo());
+        flightDto.setFrom(this.getFrom().getPlaceDto());
+        flightDto.setTo(this.getTo().getPlaceDto());
         flightDto.setArriveTime(this.getArriveTime());
         flightDto.setDepartureTime(this.getDepartureTime());
         flightDto.setSeatsCapacity(this.getSeatsCapacity());
@@ -156,12 +168,20 @@ public class Flight {
 
     public FlightCommand getFlightCommand() {
         FlightCommand flightCommand = new FlightCommand();
+        //2021-06-24T17:14
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+
+
         flightCommand.setFlightId(this.getFlightId());
         flightCommand.setFlightNumber(this.getFlightNumber());
-        flightCommand.setFrom(this.getFrom());
-        flightCommand.setTo(this.getTo());
-        flightCommand.setArriveTime(this.getArriveTime().toString());
-        flightCommand.setDepartureTime(this.getDepartureTime().toString());
+        flightCommand.setFrom(this.getFrom().getName());
+        flightCommand.setTo(this.getTo().getName());
+        flightCommand.setPlaceIdFrom(this.getFrom().getPlaceId());
+        flightCommand.setPlaceIdTo(this.getTo().getPlaceId());
+//        flightCommand.setArriveTime(this.getArriveTime().toString());
+//        flightCommand.setDepartureTime(this.getDepartureTime().toString());
+        flightCommand.setArriveTime(this.getArriveTime().format(formatter));
+        flightCommand.setDepartureTime(this.getDepartureTime().format(formatter));
         flightCommand.setSeatsCapacity(this.getSeatsCapacity());
         flightCommand.setTicketPrice(this.getTicketPrice());
 

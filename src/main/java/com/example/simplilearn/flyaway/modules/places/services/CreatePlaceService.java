@@ -23,7 +23,7 @@ public class CreatePlaceService {
 
         place = placeDao.create(place);
 
-        return place.getFlightDto();
+        return place.getPlaceDto();
     }
 
 }

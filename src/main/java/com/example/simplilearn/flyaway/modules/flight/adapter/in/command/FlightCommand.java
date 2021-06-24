@@ -10,6 +10,7 @@ public class FlightCommand {
 
     private int flightId;
     private String flightNumber;
+
     private String from;
     private String to;
 
@@ -19,10 +20,23 @@ public class FlightCommand {
     private int seatsCapacity;
     private float ticketPrice;
 
+    private int placeIdFrom;
+    private int placeIdTo;
+
+
     public FlightCommand() {
     }
 
-    public FlightCommand(int flightId, String flightNumber, String from, String to, String departureTime, String arriveTime, int seatsCapacity, float ticketPrice) {
+    public FlightCommand(int flightId,
+                         String flightNumber,
+                         String from,
+                         String to,
+                         String departureTime,
+                         String arriveTime,
+                         int seatsCapacity,
+                         float ticketPrice,
+                         int placeIdFrom,
+                         int placeIdTo) {
         this.flightId = flightId;
         this.flightNumber = flightNumber;
         this.from = from;
@@ -31,6 +45,8 @@ public class FlightCommand {
         this.arriveTime = arriveTime;
         this.seatsCapacity = seatsCapacity;
         this.ticketPrice = ticketPrice;
+        this.placeIdFrom = placeIdFrom;
+        this.placeIdTo = placeIdTo;
     }
 
     public int getFlightId() {
@@ -95,5 +111,21 @@ public class FlightCommand {
 
     public void setTicketPrice(float ticketPrice) {
         this.ticketPrice = ticketPrice;
+    }
+
+    public int getPlaceIdFrom() {
+        return placeIdFrom;
+    }
+
+    public void setPlaceIdFrom(int placeIdFrom) {
+        this.placeIdFrom = placeIdFrom;
+    }
+
+    public int getPlaceIdTo() {
+        return placeIdTo;
+    }
+
+    public void setPlaceIdTo(int placeIdTo) {
+        this.placeIdTo = placeIdTo;
     }
 }

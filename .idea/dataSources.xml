@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="flywaydb" uuid="010e51f1-1be7-435e-80f8-2179770226d5">
+    <data-source source="LOCAL" name="flywaydb@localhost" uuid="61984f19-852d-4ad5-b26a-1c51d0afc6ce">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>

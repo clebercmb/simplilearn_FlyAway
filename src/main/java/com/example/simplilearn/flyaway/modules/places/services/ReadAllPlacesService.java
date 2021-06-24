@@ -6,7 +6,9 @@ import com.example.simplilearn.flyaway.modules.places.domain.Place;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class ReadAllPlacesService {
@@ -17,15 +19,19 @@ public class ReadAllPlacesService {
         this.placeDao = placeDao;
     }
 
-    public ArrayList<PlaceCommand> execute() {
-        Set<Place> flightsSet = placeDao.readAll();
+    public List<PlaceCommand> execute() {
+        Set<Place> placesSet = placeDao.readAll();
 
-        ArrayList<PlaceCommand>  flightsList = new ArrayList<>();
-        for(Place place : flightsSet) {
-            flightsList.add( place.getFlightCommand() );
+
+
+        List<PlaceCommand> placesList = new ArrayList<>();
+        for(Place place : placesSet) {
+            placesList.add( place.getPlaceCommand() );
         }
 
-        return flightsList;
+        //placesList = placesSet.stream().sorted( (p1,p2) ->p1.getName().compareTo(p2.getName())).collect(Collectors.toList());
+
+        return placesList.stream().sorted( (p1, p2)  -> p1.getName().compareTo(p2.getName()) ).collect(Collectors.toList());
     }
 
 }

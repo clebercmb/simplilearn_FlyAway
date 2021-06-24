@@ -23,7 +23,7 @@ public class UpdatePlaceService {
 
         place = placeDao.update(place);
 
-        return place.getFlightDto();
+        return place.getPlaceDto();
     }
 
 }

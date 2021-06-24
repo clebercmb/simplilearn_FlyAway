@@ -35,10 +35,8 @@
                     <tr class="flex-table">
                         <td class="flex-row">${place.placeId}</td>
                         <td class="flex-row">${place.name}</td>
-
                         <td class="flex-row"><a class="btn btn-warning" href="<%=request.getContextPath()%>/updatePlace?id=<c:out value="${place.placeId}"/>">Edit</a></td>
                         <td class="flex-row"><a class="btn btn-danger" href="<%=request.getContextPath()%>/deletePlace?id=<c:out value="${place.placeId}"/>">Delete</a></td>
-
                     </tr>
                 </c:forEach>
 

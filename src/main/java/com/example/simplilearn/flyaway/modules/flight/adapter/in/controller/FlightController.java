@@ -34,9 +34,17 @@ public class FlightController {
     }
 
     @RequestMapping("flight")
-    public String showFlight(@ModelAttribute("flightCommand") FlightCommand flight) {
+    public String updateFlight(@ModelAttribute("flightCommand") FlightCommand flight) {
         System.out.println("showFlight");
         return "flight";
+    }
+
+    @RequestMapping("updateFlight")
+    public String showUpdateFlight(@ModelAttribute("flightCommand") FlightCommand flight, @RequestParam String id, Model map) {
+        flight = readFlightService.execute(Integer.parseInt(id));
+        map.addAttribute("flight", flight);
+
+        return "flightUpdate";
     }
 
 
@@ -44,6 +52,16 @@ public class FlightController {
     public String post(@ModelAttribute("flightCommand") FlightCommand flight, Model map) {
         FlightDto flightDo = createFlightService.execute(flight);
         map.addAttribute("flight", flightDo);
+
+        return "redirect:/flight-dashboard";
+    }
+
+
+    @RequestMapping(value = "saveFlight", method = RequestMethod.POST)
+    public String put(@ModelAttribute("flightCommand") FlightCommand flight, Model map) {
+        FlightDto flightDto = updateFlightService.execute(flight);
+
+        map.addAttribute("flight", flightDto);
 
         return "redirect:/flight-dashboard";
     }

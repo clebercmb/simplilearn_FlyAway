@@ -17,7 +17,7 @@ public class ReadPlaceService {
     public PlaceCommand execute(int id) {
 
         Place place = placeDao.read(id);
-        return place.getFlightCommand();
+        return place.getPlaceCommand();
 
     }
 

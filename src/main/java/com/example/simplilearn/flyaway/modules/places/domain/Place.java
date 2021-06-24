@@ -19,14 +19,17 @@ public class Place {
     @Column(name="name", nullable = false, length = 30)
     private String name;
 
+
     public Place() {
     }
 
     public Place(PlaceDto placeDto) {
+        this.placeId = placeDto.getPlaceId();
         this.name = placeDto.getName();
     }
 
     public Place(PlaceCommand placeCommand) {
+        this.placeId = placeCommand.getPlaceId();
         this.name = placeCommand.getName();
 
     }
@@ -53,7 +56,7 @@ public class Place {
     }
 
 
-    public PlaceDto getFlightDto() {
+    public PlaceDto getPlaceDto() {
         PlaceDto placeDto = new PlaceDto();
         placeDto.setPlaceId(this.getPlaceId());
         placeDto.setName(this.getName());
@@ -61,7 +64,7 @@ public class Place {
         return placeDto;
     }
 
-    public PlaceCommand getFlightCommand() {
+    public PlaceCommand getPlaceCommand() {
         PlaceCommand placeCommand = new PlaceCommand();
         placeCommand.setPlaceId(this.getPlaceId());
         placeCommand.setName(this.getName());

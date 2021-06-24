@@ -1,6 +1,7 @@
 package com.example.simplilearn.flyaway.modules.flight.dto;
 
 import com.example.simplilearn.flyaway.modules.flight.adapter.in.command.FlightCommand;
+import com.example.simplilearn.flyaway.modules.places.dto.PlaceDto;
 import com.sun.istack.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -12,8 +13,8 @@ public class FlightDto {
 
     private int flightId;
     private String flightNumber;
-    private String from;
-    private String to;
+    private PlaceDto from;
+    private PlaceDto to;
 
     @NotNull
     @DateTimeFormat(pattern = "uuuu-MM-dd HH:mm")
@@ -34,7 +35,7 @@ public class FlightDto {
     }
 
 
-    public FlightDto(int flightId, String flightNumber, String from, String to, LocalDateTime departureTime, LocalDateTime arriveTime, int seatsCapacity, float ticketPrice) {
+    public FlightDto(int flightId, String flightNumber, PlaceDto from, PlaceDto to, LocalDateTime departureTime, LocalDateTime arriveTime, int seatsCapacity, float ticketPrice) {
         this.flightId = flightId;
         this.flightNumber = flightNumber;
         this.from = from;
@@ -61,19 +62,19 @@ public class FlightDto {
         this.flightNumber = flightNumber;
     }
 
-    public String getFrom() {
+    public PlaceDto getFrom() {
         return from;
     }
 
-    public void setFrom(String from) {
+    public void setFrom(PlaceDto from) {
         this.from = from;
     }
 
-    public String getTo() {
+    public PlaceDto getTo() {
         return to;
     }
 
-    public void setTo(String to) {
+    public void setTo(PlaceDto to) {
         this.to = to;
     }
 

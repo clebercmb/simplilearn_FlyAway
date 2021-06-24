@@ -70,7 +70,7 @@ public class PlaceDaoImpl extends PlaceDao {
     }
 
     protected String getQueryFindAll() {
-        return "from Place";
+        return "from Place order by name";
     }
     protected String getQueryDelete() {
         return "delete from Place where placeId = :id";
