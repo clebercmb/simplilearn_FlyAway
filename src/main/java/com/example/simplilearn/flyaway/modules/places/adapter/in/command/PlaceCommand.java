@@ -4,6 +4,7 @@ public class PlaceCommand {
 
     private int placeId;
     private String name;
+    private String selected="";
 
     public PlaceCommand() {
     }
@@ -28,5 +29,18 @@ public class PlaceCommand {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getSelected() {
+        return selected;
+    }
+
+    public void activeSelected() {
+        this.selected = "selected";
+    }
+
+    public void deActiveSelected() {
+        this.selected = "";
+    }
+
 
 }

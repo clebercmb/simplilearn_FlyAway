@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="sform" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -30,12 +31,23 @@
 
              <div>
                  <label for="from">From</label>
-                 <input type="text" id="from" name="from" value="${flight.from}"/>
+                 <!--input type="text" id="from" name="from" value="${flight.from}"/-->
+                 <select name="from" id="from">
+                     <c:forEach var="place"  items="${flight.placeFromList}">
+                         <option value="${place.placeId}"  ${place.selected}>${place.name}</option>
+                     </c:forEach>
+                 </select>
+
              </div>
 
              <div>
                  <label for="to">To</label>
-                 <input type="text" id="to" name="to" value="${flight.to}"/>
+                 <!--input type="text" id="to" name="to" value="${flight.to}"/-->
+                 <select name="to" id="to">
+                     <c:forEach var="place"  items="${flight.placeToList}">
+                         <option value="${place.placeId}" ${place.selected}>${place.name}</option>
+                     </c:forEach>
+                 </select>
              </div>
 
              <div>

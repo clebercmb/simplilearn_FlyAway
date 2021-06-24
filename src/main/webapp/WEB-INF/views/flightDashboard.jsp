@@ -18,9 +18,12 @@
 
 <%@include file="header.jsp"%>
 
-<div class="container-place-dashboard">
-    <h1>Flight Dashboard</h1>
-    <div class="container-place-dashboard">
+<div class="container-flight-dashboard">
+    <div class="container-flight-dashboard-header">
+        <h1>Flight Dashboard</h1>
+        <a href="flight"  class="btn btn-primary" >New Flight</a>
+    </div>
+    <div class="container-flight-dashboard">
         <table id="table-container">
             <thead>
             <tr class="flex-table header">

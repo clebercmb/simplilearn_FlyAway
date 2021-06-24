@@ -10,6 +10,7 @@ public class ReadPlaceService {
 
     private final PlaceDao placeDao;
 
+
     public ReadPlaceService(PlaceDao placeDao) {
         this.placeDao = placeDao;
     }
@@ -17,6 +18,7 @@ public class ReadPlaceService {
     public PlaceCommand execute(int id) {
 
         Place place = placeDao.read(id);
+
         return place.getPlaceCommand();
 
     }

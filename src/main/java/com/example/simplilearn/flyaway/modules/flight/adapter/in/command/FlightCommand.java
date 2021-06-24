@@ -1,9 +1,9 @@
 package com.example.simplilearn.flyaway.modules.flight.adapter.in.command;
 
-import com.sun.istack.NotNull;
-import org.springframework.format.annotation.DateTimeFormat;
+import com.example.simplilearn.flyaway.modules.places.adapter.in.command.PlaceCommand;
+import com.example.simplilearn.flyaway.modules.places.domain.Place;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 public class FlightCommand {
 
@@ -23,6 +23,13 @@ public class FlightCommand {
     private int placeIdFrom;
     private int placeIdTo;
 
+    private Place fromPlace;
+    private Place toPlace;
+
+    List<PlaceCommand> placeFromList;
+    List<PlaceCommand> placeToList;
+
+
 
     public FlightCommand() {
     }
@@ -36,7 +43,8 @@ public class FlightCommand {
                          int seatsCapacity,
                          float ticketPrice,
                          int placeIdFrom,
-                         int placeIdTo) {
+                         int placeIdTo,
+                         List<PlaceCommand> placeFromList) {
         this.flightId = flightId;
         this.flightNumber = flightNumber;
         this.from = from;
@@ -47,6 +55,7 @@ public class FlightCommand {
         this.ticketPrice = ticketPrice;
         this.placeIdFrom = placeIdFrom;
         this.placeIdTo = placeIdTo;
+        this.placeFromList = placeFromList;
     }
 
     public int getFlightId() {
@@ -127,5 +136,37 @@ public class FlightCommand {
 
     public void setPlaceIdTo(int placeIdTo) {
         this.placeIdTo = placeIdTo;
+    }
+
+    public List<PlaceCommand> getPlaceFromList() {
+        return placeFromList;
+    }
+
+    public void setPlaceFromList(List<PlaceCommand> placeFromList) {
+        this.placeFromList = placeFromList;
+    }
+
+    public Place getFromPlace() {
+        return fromPlace;
+    }
+
+    public void setFromPlace(Place fromPlace) {
+        this.fromPlace = fromPlace;
+    }
+
+    public List<PlaceCommand> getPlaceToList() {
+        return placeToList;
+    }
+
+    public void setPlaceToList(List<PlaceCommand> placeToList) {
+        this.placeToList = placeToList;
+    }
+
+    public Place getToPlace() {
+        return toPlace;
+    }
+
+    public void setToPlace(Place toPlace) {
+        this.toPlace = toPlace;
     }
 }

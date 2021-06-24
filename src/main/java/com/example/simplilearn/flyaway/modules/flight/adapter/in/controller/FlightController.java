@@ -3,6 +3,8 @@ package com.example.simplilearn.flyaway.modules.flight.adapter.in.controller;
 import com.example.simplilearn.flyaway.modules.flight.adapter.in.command.FlightCommand;
 import com.example.simplilearn.flyaway.modules.flight.dto.FlightDto;
 import com.example.simplilearn.flyaway.modules.flight.services.*;
+import com.example.simplilearn.flyaway.modules.places.adapter.in.command.PlaceCommand;
+import com.example.simplilearn.flyaway.modules.places.services.ReadAllPlacesService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class FlightController {
@@ -20,22 +23,29 @@ public class FlightController {
     DeleteFlightsService deleteFlightsService;
     ReadFlightService readFlightService;
     UpdateFlightService updateFlightService;
+    ReadAllPlacesService readAllPlacesService;
 
     public FlightController(CreateFlightService createFlightService,
                             ReadAllFlightsService readAllFlightsService,
                             DeleteFlightsService deleteFlightsService,
                             ReadFlightService readFlightService,
-                            UpdateFlightService updateFlightService) {
+                            UpdateFlightService updateFlightService,
+                            ReadAllPlacesService readAllPlacesService) {
         this.createFlightService = createFlightService;
         this.readAllFlightsService = readAllFlightsService;
         this.deleteFlightsService = deleteFlightsService;
         this.readFlightService = readFlightService;
         this.updateFlightService = updateFlightService;
+        this.readAllPlacesService = readAllPlacesService;
     }
 
     @RequestMapping("flight")
-    public String updateFlight(@ModelAttribute("flightCommand") FlightCommand flight) {
+    public String showFlight(@ModelAttribute("flightCommand") FlightCommand flight, Model map) {
         System.out.println("showFlight");
+        List<PlaceCommand> placeCommandList = readAllPlacesService.execute();
+
+        map.addAttribute("places", placeCommandList);
+
         return "flight";
     }
 

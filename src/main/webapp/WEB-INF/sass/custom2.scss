@@ -263,6 +263,12 @@ th {
         margin-bottom: 20px ;
         width: 240px;
       }
+
+      select {
+        margin-bottom: 20px ;
+        width: 240px;
+        height: 24px;
+      }
     }
 
     input[type="submit"] {
@@ -276,17 +282,28 @@ th {
 /**
 *  Flight Dashboard
 */
-.container-flight-dashboard {
+.container-flight-dashboard, .container-place-dashboard {
   width: 1200px;
   padding-bottom: 30px;
   margin: 40px auto;
   background: $primary;
   border-radius: 10px;
+
+  .container-flight-dashboard-header,
+  .container-place-dashboard-header{
+    display: flex;
+     a {
+       height: 35px;
+       margin: 10px;
+
+     }
+  }
+
   h1 {
     margin: 0 auto 20px;
     text-align: center;
     color: $tertiary;
-    background: $quaternary;
+    /*background: $quaternary;*/
     border-radius: 10px 10px 0 0;
   }
 

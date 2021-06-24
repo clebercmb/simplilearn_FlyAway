@@ -19,7 +19,10 @@
 <%@include file="header.jsp"%>
 
 <div class="container-place-dashboard">
-    <h1>Place Dashboard</h1>
+    <div class="container-place-dashboard-header">
+        <h1>Place Dashboard</h1>
+        <a href="place"  class="btn btn-primary" >New Place</a>
+    </div>
     <div class="container-place-dashboard">
         <table id="table-container">
             <thead>
