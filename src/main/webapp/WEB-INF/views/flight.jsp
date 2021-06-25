@@ -33,8 +33,8 @@
                  <!--input type="text" id="from" name="from"/-->
 
                  <select name="from" id="from">
-                     <c:forEach var="place"  items="${places}">
-                         <option value="${place.placeId}">${place.name}</option>
+                     <c:forEach var="user"  items="${places}">
+                         <option value="${user.placeId}">${user.name}</option>
                      </c:forEach>
                  </select>
 
@@ -44,8 +44,8 @@
                  <label for="to">To</label>
                  <!--input type="text" id="to" name="to"/-->
                  <select name="to" id="to">
-                     <c:forEach var="place"  items="${places}">
-                         <option value="${place.placeId}">${place.name}</option>
+                     <c:forEach var="user"  items="${places}">
+                         <option value="${user.placeId}">${user.name}</option>
                      </c:forEach>
                  </select>
 

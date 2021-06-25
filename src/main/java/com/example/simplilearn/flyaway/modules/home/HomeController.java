@@ -22,7 +22,6 @@ public class HomeController {
     }
 
 
-
     @RequestMapping("booking")
     public String showBooking() {
         System.out.println("show Booking");

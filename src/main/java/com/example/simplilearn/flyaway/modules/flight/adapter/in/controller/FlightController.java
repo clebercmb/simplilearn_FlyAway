@@ -1,9 +1,11 @@
 package com.example.simplilearn.flyaway.modules.flight.adapter.in.controller;
 
 import com.example.simplilearn.flyaway.modules.flight.adapter.in.command.FlightCommand;
+import com.example.simplilearn.flyaway.modules.flight.adapter.in.command.SearchFlightsCommand;
 import com.example.simplilearn.flyaway.modules.flight.dto.FlightDto;
 import com.example.simplilearn.flyaway.modules.flight.services.*;
 import com.example.simplilearn.flyaway.modules.places.adapter.in.command.PlaceCommand;
+import com.example.simplilearn.flyaway.modules.places.dto.PlaceDto;
 import com.example.simplilearn.flyaway.modules.places.services.ReadAllPlacesService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,19 +26,23 @@ public class FlightController {
     ReadFlightService readFlightService;
     UpdateFlightService updateFlightService;
     ReadAllPlacesService readAllPlacesService;
+    SearchFlightService searchFlightService;
+
 
     public FlightController(CreateFlightService createFlightService,
                             ReadAllFlightsService readAllFlightsService,
                             DeleteFlightsService deleteFlightsService,
                             ReadFlightService readFlightService,
                             UpdateFlightService updateFlightService,
-                            ReadAllPlacesService readAllPlacesService) {
+                            ReadAllPlacesService readAllPlacesService,
+                            SearchFlightService searchFlightService) {
         this.createFlightService = createFlightService;
         this.readAllFlightsService = readAllFlightsService;
         this.deleteFlightsService = deleteFlightsService;
         this.readFlightService = readFlightService;
         this.updateFlightService = updateFlightService;
         this.readAllPlacesService = readAllPlacesService;
+        this.searchFlightService = searchFlightService;
     }
 
     @RequestMapping("flight")
@@ -95,6 +101,20 @@ public class FlightController {
 
         return "redirect:/flight-dashboard";
     }
+
+
+    @RequestMapping("search-flights")  // default GET
+    public String searchFlights(@ModelAttribute("searchCommand") SearchFlightsCommand search, Model map) {
+
+        List<FlightDto> flightList = searchFlightService.execute(search);
+        map.addAttribute("flights", flightList);
+
+        return "index";
+
+        //return "redirect:/index";
+    }
+
+
 
 
 }

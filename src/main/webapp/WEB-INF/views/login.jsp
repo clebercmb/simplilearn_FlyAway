@@ -45,11 +45,11 @@
                 <form action="signin">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Email">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -60,23 +60,22 @@
                 <form action="signup">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="name" class="form-control" id="name" aria-describedby="name">
+                        <input type="text" class="form-control" id="name" name="name" aria-describedby="name">
 
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+                        <input type="email" class="form-control" id="email2" name="email" aria-describedby="emailHelp" placeholder="Email">
                         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="password">
+                        <input type="password" class="form-control" id="password2" name="password" placeholder="password">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>
-
 
 
     </div>

@@ -1,5 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,9 +21,8 @@
     <%@include file="header.jsp"%>
 
     <div class="container-search-flights-list">
-        <form class="container-flights">
+        <form class="container-flights"  action="search-flights">
             <div id="type-trip">
-
                 <input type="radio" id="roundTrip" name="tripType" value ="0"/>
                 <label id="label_round_trip"  for="roundTrip">
                     Round trip
@@ -82,7 +83,7 @@
 
         </form>
 
-        <div class="container-flights-list">
+        <div class="container-flights-list"0>
             <table id="table-container">
                 <thead>
                     <tr class="flex-table header">

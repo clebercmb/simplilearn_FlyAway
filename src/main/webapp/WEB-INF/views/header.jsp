@@ -2,9 +2,9 @@
     <nav class="nav-header">
         <div class="nav-header-left">
             <a class="nav-link active" aria-current="page" href="home">Home</a>
-            <a class="nav-link active" aria-current="page" href="flight-dashboard">Flights DashBoard</a>
             <a class="nav-link" href="booking-tickets">Book Tickets</a>
-            <a class="nav-link" href="place-dashboard">Place Dashboard</a>
+            <a class="nav-link active" aria-current="page" href="flight-dashboard">Flights DashBoard</a>
+            <a class="nav-link" href="user-dashboard">Place Dashboard</a>
         </div>
 
         <div class="nav-header-right">

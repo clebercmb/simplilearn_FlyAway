@@ -5,7 +5,14 @@ import com.example.simplilearn.flyaway.modules.flight.domain.Flight;
 import com.example.simplilearn.flyaway.modules.places.domain.Place;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 @Component
@@ -46,7 +53,6 @@ public class FlightDaoImpl extends FlightDao{
 
     @Override
     public Flight read(int id) {
-        System.out.println("Flight.add");
         Transaction transaction = null;
         Flight flight= null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -96,13 +102,7 @@ public class FlightDaoImpl extends FlightDao{
             flightToUpdate.setSeatsCapacity(item.getSeatsCapacity());
             flightToUpdate.setTicketPrice(item.getTicketPrice());
 
-
-
-
-
             session.persist(flightToUpdate);
-
-            System.out.println("flightToUpdate="+flightToUpdate);
 
             transaction.commit();
             session.close();
@@ -124,4 +124,32 @@ public class FlightDaoImpl extends FlightDao{
         return "delete from Flight where flightId = :id";
     }
 
+
+    @Override
+    public List<Flight> searchFlights(String from, String To, int numberOfPassengers, LocalDate departureDate, LocalDate returnDate) {
+
+        Transaction transaction = null;
+
+        List<Flight> flights = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            String sql = "SELECT a.*, b.name as from_place, c.name as to_place FROM flight a INNER JOIN place b ON a.place_id_from  = b.place_id INNER JOIN  place c on a.place_id_to = c.place_id WHERE b.name like :from_place";
+
+            System.out.println(">>>>>SQL="+sql);
+            flights = session.createNativeQuery(sql).addEntity(Flight.class).setParameter("from_place", "%"+from+"%").list();;
+            //query.setParameter("from_place", from);
+
+            transaction.commit();
+            session.close();
+        } catch (Exception ex) {
+            if(transaction != null) {
+                transaction.rollback();
+            }
+            System.out.println(ex.getMessage());
+            throw new ExceptionInInitializerError(ex);
+        }
+
+        return flights;
+    }
 }

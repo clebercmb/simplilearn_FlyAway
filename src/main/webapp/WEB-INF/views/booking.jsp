@@ -23,7 +23,7 @@
 <div class="container-booking">
     <h1>Booking</h1>
 
-    <div class="place-information">
+    <div class="user-information">
         <h4>Flight Information</h4>
         <div>
             <label><Strong>Flight Number :</Strong><span>XP123</span></label>

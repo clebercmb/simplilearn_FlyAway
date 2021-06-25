@@ -20,9 +20,9 @@
 
     <%@include file="header.jsp"%>
 
-    <div class="container-place">
+    <div class="container-user">
         <h1>Flight Update</h1>
-         <sform:form method="post" action="saveFlight" modelAttribute="flightCommand" class="container-place-data">
+         <sform:form method="post" action="saveFlight" modelAttribute="flightCommand" class="container-user-data">
              <input type="hidden" id="flightId" name="flightId" value="${flight.flightId}"/>
              <div>
                  <label for="flightNumber">Flight Number</label>
@@ -33,8 +33,8 @@
                  <label for="from">From</label>
                  <!--input type="text" id="from" name="from" value="${flight.from}"/-->
                  <select name="from" id="from">
-                     <c:forEach var="place"  items="${flight.placeFromList}">
-                         <option value="${place.placeId}"  ${place.selected}>${place.name}</option>
+                     <c:forEach var="user"  items="${flight.placeFromList}">
+                         <option value="${user.placeId}"  ${user.selected}>${user.name}</option>
                      </c:forEach>
                  </select>
 
@@ -44,8 +44,8 @@
                  <label for="to">To</label>
                  <!--input type="text" id="to" name="to" value="${flight.to}"/-->
                  <select name="to" id="to">
-                     <c:forEach var="place"  items="${flight.placeToList}">
-                         <option value="${place.placeId}" ${place.selected}>${place.name}</option>
+                     <c:forEach var="user"  items="${flight.placeToList}">
+                         <option value="${user.placeId}" ${user.selected}>${user.name}</option>
                      </c:forEach>
                  </select>
              </div>

@@ -69,8 +69,6 @@ public abstract class IDao <T>{
 
             int result = query.executeUpdate();
 
-            System.out.println(getQueryDelete() + " delete.result = "+ result);
-
             transaction.commit();
             session.close();
         } catch (Exception ex) {

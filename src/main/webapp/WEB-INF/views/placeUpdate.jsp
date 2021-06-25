@@ -19,13 +19,13 @@
 
     <%@include file="header.jsp"%>
 
-    <div class="container-place">
+    <div class="container-user">
         <h1>Place Update</h1>
-         <sform:form method="post" action="savePlace" modelAttribute="placeCommand" class="container-place-data">
+         <sform:form method="post" action="savePlace" modelAttribute="userCommand" class="container-user-data">
              <div>
-                 <input type="hidden" name="placeId" id="placeId" value="${place.placeId}"/>
+                 <input type="hidden" name="placeId" id="placeId" value="${user.placeId}"/>
                  <label for="name">Name</label>
-                 <input type="text" id="name" name="name" value="${place.name}"/>
+                 <input type="text" id="name" name="name" value="${user.name}"/>
              </div>
 
              <input type="submit"/>

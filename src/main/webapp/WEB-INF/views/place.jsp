@@ -19,9 +19,9 @@
 
     <%@include file="header.jsp"%>
 
-    <div class="container-place">
+    <div class="container-user">
         <h1>Place</h1>
-         <sform:form method="post" action="createPlace" modelAttribute="placeCommand" class="container-place-data">
+         <sform:form method="post" action="createPlace" modelAttribute="userCommand" class="container-user-data">
              <div>
                  <label for="name">Name</label>
                  <input type="text" id="name" name="name"/>

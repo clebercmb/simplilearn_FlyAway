@@ -29,10 +29,7 @@ body {
     padding: 0;
 }*/
 
-.login {
-    width: 400px;
-    margin: 50px auto;
-}
+
 
 .nav-header {
     display: flex;
@@ -120,8 +117,10 @@ Booking
 * Sign in / Sign up
 */
 .login {
+
+    margin: 50px auto;
     background: var(--primary);
-    height: 330px;
+    height: 430px;
     width: 500px;
     padding: 10px;
     border-radius: 10px;
