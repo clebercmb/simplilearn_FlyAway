@@ -313,3 +313,21 @@ th {
   }
 
 }
+
+/**
+* Home
+*/
+.container-search-flights-list {
+  h1 {
+    margin: 0 auto 20px;
+    text-align: center;
+    color: $tertiary;
+    border-radius: 10px 10px 0 0;
+    margin-top: 10px;
+  }
+
+  .container-flights-level-1 {
+    display: flex;
+    justify-content: space-between;
+  }
+}

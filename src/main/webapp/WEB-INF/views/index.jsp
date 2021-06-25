@@ -22,9 +22,11 @@
     <%@include file="header.jsp"%>
 
     <div class="container-search-flights-list">
-        <sform:form method="post" action="search-flights" modelAttribute="searchCommand" class="container-flights">
 
-            <div id="type-trip">
+        <sform:form method="post" action="search-flights" modelAttribute="searchCommand" class="container-flights">
+            <h1>Search Flights</h1>
+
+            <!--div id="type-trip">
                 <input type="radio" id="roundTrip" name="tripType" value ="0"/>
                 <label id="label_round_trip"  for="roundTrip">
                     Round trip
@@ -35,7 +37,7 @@
                     One way
                 </label>
 
-            </div>
+            </div-->
 
             <div class="container-flights-level-1">
                 <div>
@@ -55,21 +57,19 @@
                     <label>
                         Number of passengers
                         <select name="numberOfPassengers" id="numberOfPassengers">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
+                            <option value="1" <c:if test="${searchCommand.numberOfPassengers == 1}">selected</c:if>>1</option>
+                            <option value="2" <c:if test="${searchCommand.numberOfPassengers == 2}">selected</c:if>>2</option>
+                            <option value="3" <c:if test="${searchCommand.numberOfPassengers == 3}">selected</c:if>>3</option>
+                            <option value="4" <c:if test="${searchCommand.numberOfPassengers == 4}">selected</c:if>>4</option>
+                            <option value="5" <c:if test="${searchCommand.numberOfPassengers == 5}">selected</c:if>>5</option>
+                            <option value="6" <c:if test="${searchCommand.numberOfPassengers == 6}">selected</c:if>>6</option>
+                            <option value="7" <c:if test="${searchCommand.numberOfPassengers == 7}">selected</c:if>>7</option>
+                            <option value="8" <c:if test="${searchCommand.numberOfPassengers == 8}">selected</c:if>>8</option>
+                            <option value="9" <c:if test="${searchCommand.numberOfPassengers == 9}">selected</c:if>>9</option>
                         </select>
                     </label>
                 </div>
-
             </div>
-
 
             <div class="container-flights-level-1">
                 <label>
@@ -103,7 +103,7 @@
                     <tbody>
                         <c:forEach var="flight"  items="${flights}">
                             <tr class="flex-table">
-                                <td class="flex-row"><a href="booking" title="Click here to book a trip">${flight.from.name}</a></td>
+                                <td class="flex-row"><a href="<%=request.getContextPath()%>/booking?id=<c:out value="${flight.flightId}&passengers=${searchCommand.numberOfPassengers}"/>">${flight.from.name}</a></td>
                                 <td class="flex-row">${flight.to.name}</td>
                                 <td class="flex-row">${flight.flightNumber}</td>
                                 <td class="flex-row">${flight.departureTime}</td>
