@@ -6,21 +6,20 @@ import com.example.simplilearn.flyaway.modules.user.domain.User;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ReadUserService {
+public class FindUserByEmailService {
 
     private final UserDao userDao;
 
 
-    public ReadUserService(UserDao userDao) {
+    public FindUserByEmailService(UserDao userDao) {
         this.userDao = userDao;
     }
 
-    public UserCommand execute(int id) {
+    public UserCommand execute(String email) {
 
-        User user = userDao.read(id);
+        User user = userDao.findByEmail(email);
 
         return user.getUserCommand();
 
     }
-
 }

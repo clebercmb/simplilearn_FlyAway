@@ -8,76 +8,109 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="place")
+@Table(name="users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="place_id")
-    private int placeId;
+    @Column(name="user_id")
+    private int userId;
 
     @Column(name="name", nullable = false, length = 30)
     private String name;
 
+    @Column(name="email", nullable = false, length = 30)
+    private String email;
+
+    @Column(name="password", nullable = false, length = 30)
+    private String password;
+
+    @Column(name="users_group")
+    private int group;
 
     public User() {
     }
 
-    public User(UserDto userDto) {
-        this.placeId = userDto.getPlaceId();
-        this.name = userDto.getName();
-    }
-
     public User(UserCommand userCommand) {
-        this.placeId = userCommand.getPlaceId();
+        this.userId = userCommand.getUserId();
         this.name = userCommand.getName();
-
+        this.email = userCommand.getEmail();
+        this.password = userCommand.getPassword();
+        this.group = userCommand.getGroup();
     }
 
-    public User(int placeId, String name) {
-        this.placeId = placeId;
+
+    public User(int userId, String name, String email, String password, int group) {
+        this.userId = userId;
         this.name = name;
+        this.email = email;
+        this.password = password;
+        this.group = group;
     }
 
-    public int getPlaceId() {
-        return placeId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setPlaceId(int flightId) {
-        this.placeId = flightId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String flightNumber) {
-        this.name = flightNumber;
+    public void setName(String name) {
+        this.name = name;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
-    public UserDto getPlaceDto() {
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getGroup() {
+        return group;
+    }
+
+    public void setGroup(int group) {
+        this.group = group;
+    }
+
+    public UserDto getUserDto() {
+
         UserDto userDto = new UserDto();
-        userDto.setPlaceId(this.getPlaceId());
-        userDto.setName(this.getName());
+        userDto.setUserId(getUserId());
+        userDto.setName(getName());
+        userDto.setEmail(getEmail());
+        userDto.setPassword(getPassword());
+        userDto.setGroup( getGroup() );
 
         return userDto;
     }
 
-    public UserCommand getPlaceCommand() {
-        UserCommand userCommand = new UserCommand();
-        userCommand.setPlaceId(this.getPlaceId());
-        userCommand.setName(this.getName());
+    public UserCommand getUserCommand() {
 
+        UserCommand userDto = new UserCommand();
+        userDto.setUserId(getUserId());
+        userDto.setName(getName());
+        userDto.setEmail(getEmail());
+        userDto.setPassword(getPassword());
+        userDto.setGroup( getGroup());
 
-        return userCommand;
+        return userDto;
     }
 
-    @Override
-    public String toString() {
-        return "Place{" +
-                "placeId=" + placeId +
-                ", name='" + name + '\'' +
-                '}';
-    }
+
 }

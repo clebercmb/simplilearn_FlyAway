@@ -2,24 +2,29 @@ package com.example.simplilearn.flyaway.modules.user.adapter.in.command;
 
 public class UserCommand {
 
-    private int placeId;
+    private int userId;
     private String name;
-    private String selected="";
+    private String email;
+    private String password;
+    private int group;
 
     public UserCommand() {
     }
 
-    public UserCommand(int placeId, String name) {
-        this.placeId = placeId;
+    public UserCommand(int userId, String name, String email, String password, int group) {
+        this.userId = userId;
         this.name = name;
+        this.email = email;
+        this.password = password;
+        this.group = group;
     }
 
-    public int getPlaceId() {
-        return placeId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setPlaceId(int placeId) {
-        this.placeId = placeId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -30,17 +35,27 @@ public class UserCommand {
         this.name = name;
     }
 
-    public String getSelected() {
-        return selected;
+    public String getEmail() {
+        return email;
     }
 
-    public void activeSelected() {
-        this.selected = "selected";
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void deActiveSelected() {
-        this.selected = "";
+    public String getPassword() {
+        return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
+    public int getGroup() {
+        return group;
+    }
+
+    public void setGroup(int group) {
+        this.group = group;
+    }
 }

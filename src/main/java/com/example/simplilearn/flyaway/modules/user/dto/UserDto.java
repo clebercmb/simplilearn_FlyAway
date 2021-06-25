@@ -1,31 +1,42 @@
 package com.example.simplilearn.flyaway.modules.user.dto;
 
 import com.example.simplilearn.flyaway.modules.user.adapter.in.command.UserCommand;
+import com.example.simplilearn.flyaway.modules.user.domain.Group;
 
 public class UserDto {
 
-    private int placeId;
+    private int userId;
     private String name;
+    private String email;
+    private String password;
+    private int group;
 
     public UserDto() {
     }
 
     public UserDto(UserCommand userCommand) {
-
-
+        this.userId = userCommand.getUserId();
+        this.name = userCommand.getName();
+        this.email = userCommand.getEmail();
+        this.password = userCommand.getPassword();
+        this.group = userCommand.getGroup() ;
     }
 
-    public UserDto(int placeId, String name) {
-        this.placeId = placeId;
+
+    public UserDto(int userId, String name, String email, String password, int group) {
+        this.userId = userId;
         this.name = name;
+        this.email = email;
+        this.password = password;
+        this.group = group;
     }
 
-    public int getPlaceId() {
-        return placeId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setPlaceId(int placeId) {
-        this.placeId = placeId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -36,14 +47,27 @@ public class UserDto {
         this.name = name;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    public String getPassword() {
+        return password;
+    }
 
-    @Override
-    public String toString() {
-        return "FlightDto{" +
-                "flightId=" + placeId +
-                ", flightNumber='" + name + '\'' +
-                '}';
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getGroup() {
+        return group;
+    }
+
+    public void setGroup(int group) {
+        this.group = group;
     }
 }

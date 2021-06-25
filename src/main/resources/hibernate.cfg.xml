@@ -15,6 +15,7 @@
 
         <mapping class="com.example.simplilearn.flyaway.modules.flight.domain.Flight"/>
         <mapping class="com.example.simplilearn.flyaway.modules.places.domain.Place"/>
+        <mapping class="com.example.simplilearn.flyaway.modules.user.domain.User"/>
 
 
         <!--mapping class="com.example.model.Instructor" /-->

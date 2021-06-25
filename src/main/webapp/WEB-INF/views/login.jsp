@@ -18,8 +18,9 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-
     <style><%@include file="/WEB-INF/css/custom.css"%></style>
+
+    <style><%@include file="/WEB-INF/css/custom2.css"%></style>
 
 </head>
 <body>
@@ -45,7 +46,8 @@
 
             <!--Sign in-->
             <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <form action="signin">
+                <sform:form method="post" action="validate-login" modelAttribute="userCommand" class="container-place-data">
+
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="Email">
@@ -54,13 +56,18 @@
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                     </div>
+
+                    <div class="mb-3 login_error">
+                        <label>${login_error}</label>
+                    </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                </sform:form>
+
             </div>
 
             <!--Sign up-->
             <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <form action="signup">
+                <sform:form method="post" action="create-user" modelAttribute="userCommand" class="container-place-data">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" id="name" name="name" aria-describedby="name">
@@ -76,7 +83,8 @@
                         <input type="password" class="form-control" id="password2" name="password" placeholder="password">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                </sform:form>
+
             </div>
         </div>
 

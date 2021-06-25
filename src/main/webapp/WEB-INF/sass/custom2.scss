@@ -8,6 +8,7 @@ $primary: #f6f2f2;
 $secondary: #ffffff;
 $tertiary: #1565C0;
 $quaternary: #c9c7c7;
+$alert: #f80303;
 
 html {
   box-sizing: border-box;
@@ -329,5 +330,15 @@ th {
   .container-flights-level-1 {
     display: flex;
     justify-content: space-between;
+  }
+}
+
+/**
+* Login
+*/
+.login {
+  .login_error {
+    margin-top: 10px;
+    color: $alert;
   }
 }

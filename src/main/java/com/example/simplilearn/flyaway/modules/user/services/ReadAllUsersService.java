@@ -26,7 +26,7 @@ public class ReadAllUsersService {
 
         List<UserCommand> placesList = new ArrayList<>();
         for(User user : placesSet) {
-            placesList.add( user.getPlaceCommand() );
+            placesList.add( user.getUserCommand() );
         }
 
         //placesList = placesSet.stream().sorted( (p1,p2) ->p1.getName().compareTo(p2.getName())).collect(Collectors.toList());

@@ -16,13 +16,6 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping("login")
-    public String showLogin() {
-        System.out.println("Show Login requested");
-        return "login";
-    }
-
-
     @RequestMapping("booking")
     public String showBooking() {
         System.out.println("show Booking");

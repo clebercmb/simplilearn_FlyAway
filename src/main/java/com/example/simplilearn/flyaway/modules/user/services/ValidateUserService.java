@@ -7,23 +7,24 @@ import com.example.simplilearn.flyaway.modules.user.dto.UserDto;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UpdateUserService {
+public class ValidateUserService {
 
-    private UserDao userDao;
+    private final UserDao userDao;
 
-    public UpdateUserService(UserDao userDao) {
+    public ValidateUserService(UserDao userDao) {
         this.userDao = userDao;
     }
 
-    public UserDto execute(UserCommand userCommand) {
+    public boolean execute(UserCommand userCommand) {
 
         System.out.println(userCommand);
 
         User user = new User(userCommand);
 
-        user = userDao.update(user);
+        user = userDao.findByEmail(user.getEmail());
 
-        return user.getUserDto();
+        return user != null && user.getPassword().equals(userCommand.getPassword()) && user.getEmail().equals(userCommand.getEmail());
+
     }
 
 }

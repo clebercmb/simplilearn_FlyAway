@@ -4,4 +4,6 @@ import com.example.simplilearn.flyaway.modules.user.domain.User;
 import com.example.simplilearn.flyaway.util.IDao;
 
 public abstract class UserDao extends IDao<User> {
+
+    public abstract User findByEmail(String email);
 }

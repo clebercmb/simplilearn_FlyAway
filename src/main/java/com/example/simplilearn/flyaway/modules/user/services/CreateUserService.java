@@ -17,13 +17,15 @@ public class CreateUserService {
 
     public UserDto execute(UserCommand userCommand) {
 
+
         System.out.println(userCommand);
+        userCommand.setGroup(2);
 
         User user = new User(userCommand);
 
         user = userDao.create(user);
 
-        return user.getPlaceDto();
+        return user.getUserDto();
     }
 
 }
