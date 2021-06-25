@@ -2,7 +2,7 @@ package com.example.simplilearn.flyaway.modules.flight.adapter.in.command;
 
 public class SearchFlightsCommand {
 
-    private TripType tripType;
+    private int tripType;
     private String from;
     private String to;
     private int numberOfPassengers;
@@ -12,7 +12,7 @@ public class SearchFlightsCommand {
     public SearchFlightsCommand() {
     }
 
-    public SearchFlightsCommand(TripType tripType, String from, String to, int numberOfPassengers, String departureTime, String returnTime) {
+    public SearchFlightsCommand(int tripType, String from, String to, int numberOfPassengers, String departureTime, String returnTime) {
         this.tripType = tripType;
         this.from = from;
         this.to = to;
@@ -21,11 +21,11 @@ public class SearchFlightsCommand {
         this.returnTime = returnTime;
     }
 
-    public TripType getTripType() {
+    public int getTripType() {
         return tripType;
     }
 
-    public void setTripType(TripType tripType) {
+    public void setTripType(int tripType) {
         this.tripType = tripType;
     }
 

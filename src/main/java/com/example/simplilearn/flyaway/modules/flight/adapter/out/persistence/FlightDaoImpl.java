@@ -126,7 +126,7 @@ public class FlightDaoImpl extends FlightDao{
 
 
     @Override
-    public List<Flight> searchFlights(String from, String To, int numberOfPassengers, LocalDate departureDate, LocalDate returnDate) {
+    public List<Flight> searchFlights(String from, String to, int numberOfPassengers, LocalDate departureDate, LocalDate returnDate) {
 
         Transaction transaction = null;
 
@@ -134,10 +134,27 @@ public class FlightDaoImpl extends FlightDao{
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
-            String sql = "SELECT a.*, b.name as from_place, c.name as to_place FROM flight a INNER JOIN place b ON a.place_id_from  = b.place_id INNER JOIN  place c on a.place_id_to = c.place_id WHERE b.name like :from_place";
+            String departureDateString = "";
+            String returnDateString = "";
+
+            if(departureDate != null) {
+                departureDateString = departureDate.toString();
+            }
+
+            if(returnDate != null) {
+                returnDateString = returnDate.toString();
+            }
+
+
+            String sql = "SELECT a.*, b.name as from_place, c.name as to_place FROM flight a INNER JOIN place b ON a.place_id_from  = b.place_id INNER JOIN  place c on a.place_id_to = c.place_id WHERE b.name like :from_place AND c.name like :to_place AND a.departure_time like :departureDate OR a.departure_time like :returnDate";
 
             System.out.println(">>>>>SQL="+sql);
-            flights = session.createNativeQuery(sql).addEntity(Flight.class).setParameter("from_place", "%"+from+"%").list();;
+            flights = session.createNativeQuery(sql).addEntity(Flight.class)
+                    .setParameter("from_place", "%"+from+"%")
+                    .setParameter("to_place", "%"+to+"%")
+                    .setParameter("departureDate", "%"+departureDateString+"%")
+                    .setParameter("returnDate", "%"+returnDateString+"%")
+                    .list();;
             //query.setParameter("from_place", from);
 
             transaction.commit();

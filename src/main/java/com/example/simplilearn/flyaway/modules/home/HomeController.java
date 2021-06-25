@@ -1,5 +1,6 @@
 package com.example.simplilearn.flyaway.modules.home;
 
+import com.example.simplilearn.flyaway.modules.flight.adapter.in.command.SearchFlightsCommand;
 import com.example.simplilearn.flyaway.modules.flight.dto.FlightDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

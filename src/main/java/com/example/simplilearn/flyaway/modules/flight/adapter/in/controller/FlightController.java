@@ -47,7 +47,7 @@ public class FlightController {
 
     @RequestMapping("flight")
     public String showFlight(@ModelAttribute("flightCommand") FlightCommand flight, Model map) {
-        System.out.println("showFlight");
+
         List<PlaceCommand> placeCommandList = readAllPlacesService.execute();
 
         map.addAttribute("places", placeCommandList);
@@ -108,6 +108,8 @@ public class FlightController {
 
         List<FlightDto> flightList = searchFlightService.execute(search);
         map.addAttribute("flights", flightList);
+        map.addAttribute("searchCommand", search);
+
 
         return "index";
 

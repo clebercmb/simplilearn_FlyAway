@@ -176,6 +176,7 @@ th {
 */
 .container-booking-tickets {
   width: 1200px;
+  padding-top: 10px;
   padding-bottom: 30px;
   margin: 40px auto;
   background: $primary;
@@ -184,8 +185,7 @@ th {
     margin: 0 auto 20px;
     text-align: center;
     color: $tertiary;
-    background: $quaternary;
-    border-radius: 10px 10px 0 0;
+        border-radius: 10px 10px 0 0;
   }
 
   * .flex-row {
@@ -283,6 +283,7 @@ th {
 *  Flight Dashboard
 */
 .container-flight-dashboard, .container-place-dashboard {
+  padding-top: 10px;
   width: 1200px;
   padding-bottom: 30px;
   margin: 40px auto;

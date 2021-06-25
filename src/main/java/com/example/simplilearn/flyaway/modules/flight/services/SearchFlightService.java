@@ -29,12 +29,14 @@ public class SearchFlightService {
         LocalDate departureTime = null;
         LocalDate returnTime = null;
 
-        if(searchCommand.getDepartureTime() != null) {
+        if(searchCommand.getDepartureTime() != null && searchCommand.getDepartureTime().length() != 0) {
             departureTime = LocalDate.parse(searchCommand.getDepartureTime());
         }
 
-        if(searchCommand.getReturnTime() != null) {
+        if(searchCommand.getReturnTime() != null && searchCommand.getReturnTime().length() != 0 ) {
             returnTime = LocalDate.parse(searchCommand.getReturnTime());
+        } else {
+            returnTime = departureTime;
         }
 
         List<Flight> flightList = flightDao.searchFlights(

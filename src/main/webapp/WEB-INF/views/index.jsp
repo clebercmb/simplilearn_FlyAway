@@ -1,6 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sform" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html>
@@ -21,7 +22,8 @@
     <%@include file="header.jsp"%>
 
     <div class="container-search-flights-list">
-        <form class="container-flights"  action="search-flights">
+        <sform:form method="post" action="search-flights" modelAttribute="searchCommand" class="container-flights">
+
             <div id="type-trip">
                 <input type="radio" id="roundTrip" name="tripType" value ="0"/>
                 <label id="label_round_trip"  for="roundTrip">
@@ -39,13 +41,13 @@
                 <div>
                     <label>
                         From
-                        <input type="text" id="from" name="from" placeholder="City or airport"/>
+                        <input type="text" id="from" name="from" placeholder="City or airport"  value="${searchCommand.from}"/>
                     </label>
                 </div>
                 <div>
                     <label>
                         To
-                        <input type="text" id="to" name="to" placeholder="City or airport"/>
+                        <input type="text" id="to" name="to" placeholder="City or airport" value="${searchCommand.to}"/>
                     </label>
                 </div>
 
@@ -72,62 +74,50 @@
             <div class="container-flights-level-1">
                 <label>
                     Depart
-                    <input type="date" id="depart" name="depart" />
+                    <input type="date" id="departureTime" name="departureTime" value="${searchCommand.departureTime}"/>
                 </label>
                 <label>
                     Return
-                    <input type="date" id="return" name="return"/>
+                    <input type="date" id="returnTime" name="returnTime" value="${searchCommand.returnTime}"/>
                 </label>
                 <input type="submit"/>
             </div>
-
-        </form>
-
-        <div class="container-flights-list"0>
-            <table id="table-container">
-                <thead>
-                    <tr class="flex-table header">
-                        <th class="flex-row">From</th>
-                        <th class="flex-row">To</th>
-                        <th class="flex-row">Flight Number</th>
-                        <th class="flex-row">Departure time</th>
-                        <th class="flex-row">Arrive time</th>
-                        <th class="flex-row">Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="flex-table">
-                        <td class="flex-row"><a href="booking" title="Click here to book a trip">Toronto</a></td>
-                        <td class="flex-row">Sao Paulo</td>
-                        <td class="flex-row">XP123</td>
-                        <td class="flex-row">2021-10-01 09AM</td>
-                        <td class="flex-row">2021-11-02 11PM</td>
-                        <td class="flex-row">2.000</td>
-                    </tr>
+        </sform:form>
 
 
-                    <tr class="flex-table">
-                        <td class="flex-row">Catar</td>
-                        <td class="flex-row">Berlim</td>
-                        <td class="flex-row">XP123</td>
-                        <td class="flex-row">2021-10-01 09AM</td>
-                        <td class="flex-row">2021-11-02 11PM</td>
-                        <td class="flex-row">2.000</td>
-                    </tr>
 
-                    <tr class="flex-table">
-                        <td class="flex-row">Milan</td>
-                        <td class="flex-row">New York</td>
-                        <td class="flex-row">XP123</td>
-                        <td class="flex-row">2021-10-01 09AM</td>
-                        <td class="flex-row">2021-11-02 11PM</td>
-                        <td class="flex-row">2.000</td>
-                    </tr>
-                </tbody>
+        <c:if test="${flights != null}">
 
-            </table>
+            <div class="container-flights-list"0>
+                <table id="table-container">
+                    <thead>
+                        <tr class="flex-table header">
+                            <th class="flex-row">From</th>
+                            <th class="flex-row">To</th>
+                            <th class="flex-row">Flight Number</th>
+                            <th class="flex-row">Departure time</th>
+                            <th class="flex-row">Arrive time</th>
+                            <th class="flex-row">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="flight"  items="${flights}">
+                            <tr class="flex-table">
+                                <td class="flex-row"><a href="booking" title="Click here to book a trip">${flight.from.name}</a></td>
+                                <td class="flex-row">${flight.to.name}</td>
+                                <td class="flex-row">${flight.flightNumber}</td>
+                                <td class="flex-row">${flight.departureTime}</td>
+                                <td class="flex-row">${flight.arriveTime}</td>
+                                <td class="flex-row">${flight.ticketPrice}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
 
-        </div>
+                </table>
+
+            </div>
+
+        </c:if>
 
     </div>
     <!-- JavaScript Bundle with Popper -->
