@@ -1,7 +1,8 @@
 package com.example.simplilearn.flyaway.modules.user.adapter.in.controller;
 
-import com.example.simplilearn.flyaway.modules.flight.adapter.in.command.FlightCommand;
+import com.example.simplilearn.flyaway.modules.user.adapter.in.command.ChangePasswordCommand;
 import com.example.simplilearn.flyaway.modules.user.adapter.in.command.UserCommand;
+import com.example.simplilearn.flyaway.util.MessageStatus;
 import com.example.simplilearn.flyaway.modules.user.dto.UserDto;
 import com.example.simplilearn.flyaway.modules.user.services.*;
 import org.springframework.stereotype.Controller;
@@ -11,13 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 @Controller
@@ -30,6 +26,7 @@ public class UserController {
     UpdateUserService updateUserService;
     ValidateUserService validateUserService;
     FindUserByEmailService findUserByEmailService;
+    ChangePasswordService changePasswordService;
 
     public UserController(CreateUserService createUserService,
                           ReadAllUsersService readAllUsersService,
@@ -37,7 +34,8 @@ public class UserController {
                           ReadUserService readUserService,
                           UpdateUserService updateUserService,
                           ValidateUserService validateUserService,
-                          FindUserByEmailService findUserByEmailService   ) {
+                          FindUserByEmailService findUserByEmailService,
+                          ChangePasswordService changePasswordService) {
         this.createUserService = createUserService;
         this.readAllUsersService = readAllUsersService;
         this.deleteUserService = deleteUserService;
@@ -45,6 +43,7 @@ public class UserController {
         this.updateUserService = updateUserService;
         this.validateUserService = validateUserService;
         this.findUserByEmailService = findUserByEmailService;
+        this.changePasswordService = changePasswordService;
     }
 
     @RequestMapping("user")
@@ -125,6 +124,11 @@ public class UserController {
         System.out.println("Show Login requested");
         UserDto userDto = createUserService.execute(userCommand);
 
+        if(userDto == null) {
+            map.addAttribute("login_error",  "Email already used.. Try Again..!!");
+            return "login";
+        }
+
         return "redirect:/login";
     }
 
@@ -140,5 +144,41 @@ public class UserController {
 
         return "redirect:/home";
     }
+
+
+    @RequestMapping("profile")
+    public String showProfile(@ModelAttribute("changePasswordCommand") ChangePasswordCommand changePasswordCommand, HttpServletRequest request, Model map) {
+
+        HttpSession session = request.getSession(false);
+        UserCommand user= (UserCommand) session.getAttribute("user");
+
+        map.addAttribute("user", user);
+
+        System.out.println("showProfile");
+        return "profile";
+    }
+
+
+
+    @RequestMapping("change-password")
+    public String changePassword(@ModelAttribute("changePasswordCommand") ChangePasswordCommand changePasswordCommand, HttpServletRequest request, Model map) {
+
+        HttpSession session = request.getSession(false);
+        UserCommand user= (UserCommand) session.getAttribute("user");
+        changePasswordCommand.setUserId(user.getUserId());
+
+        MessageStatus message = changePasswordService.execute(changePasswordCommand);
+
+        if(message.series().equals( MessageStatus.Series.CLIENT_ERROR) ) {
+            map.addAttribute("login_error",  message.getReasonPhrase());
+            return "profile";
+        }
+
+        user = readUserService.execute(user.getUserId());
+        session.setAttribute("user", user);
+
+        return "redirect:/home";
+    }
+
 
 }

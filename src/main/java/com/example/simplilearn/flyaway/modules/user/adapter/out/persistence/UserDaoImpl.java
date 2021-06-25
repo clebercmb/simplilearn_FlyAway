@@ -58,6 +58,8 @@ public class UserDaoImpl extends UserDao {
             userToUpdate = session.load(User.class, item.getUserId());
 
             userToUpdate.setName(item.getName());
+            userToUpdate.setEmail(item.getEmail());
+            userToUpdate.setPassword(item.getPassword());
 
             session.persist(userToUpdate);
 

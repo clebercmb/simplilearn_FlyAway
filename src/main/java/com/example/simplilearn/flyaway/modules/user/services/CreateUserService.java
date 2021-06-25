@@ -21,6 +21,10 @@ public class CreateUserService {
         System.out.println(userCommand);
         userCommand.setGroup(2);
 
+        User hasUser = userDao.findByEmail(userCommand.getEmail());
+        if( hasUser != null ) {
+            return null;
+        }
         User user = new User(userCommand);
 
         user = userDao.create(user);

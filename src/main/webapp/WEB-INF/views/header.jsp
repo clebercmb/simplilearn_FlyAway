@@ -1,11 +1,11 @@
 <%@ page import="com.example.simplilearn.flyaway.modules.user.adapter.in.command.UserCommand" %>
 <header>
     <%
-        HttpSession Session = request.getSession(false);
+        HttpSession session2 = request.getSession(false);
         String userEmail= null;
         String userId="";
 
-        UserCommand user= (UserCommand) session.getAttribute("user");
+        UserCommand user= (UserCommand) session2.getAttribute("user");
         if(user  != null) {
             userEmail= user.getEmail();
             userId = user.getUserId()+"";

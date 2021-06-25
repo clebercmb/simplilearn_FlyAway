@@ -1,5 +1,6 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="sform" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,15 +21,24 @@
 
     <div class="container-profile">
         <h1>My Profile</h1>
-         <form class="container-profile-data">
-             <div>
+
+        <sform:form method="post" action="change-password" modelAttribute="changePasswordCommand" class="container-profile-data">
+
+
+            <div>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name"  value="${user.name}"/>
+            </div>
+
+
+            <div>
                  <label for="email">Email</label>
-                 <input type="email" id="email" name="email"/>
+                 <input type="email" id="email" name="email"  value="${user.email}"/>
              </div>
 
              <div>
-                 <label for="newPassword">Password</label>
-                 <input type="password" id="newPassword" name="newPassword"/>
+                 <label for="password">Password</label>
+                 <input type="password" id="password" name="password"/>
              </div>
 
              <div>
@@ -36,9 +46,13 @@
                  <input type="password" id="repeatPassword" name="repeatPassword"/>
              </div>
 
-             <input type="submit"/>
+            <div class="mb-3 login_error">
+                <label>${login_error}</label>
+            </div>
 
-         </form>
+             <input type="submit"/>
+         </sform:form>
+
 
     </div>
     <!-- JavaScript Bundle with Popper -->

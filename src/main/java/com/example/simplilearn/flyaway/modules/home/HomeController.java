@@ -28,11 +28,6 @@ public class HomeController {
         return "bookingTickets";
     }
 
-    @RequestMapping("profile")
-    public String showProfile() {
-        System.out.println("showProfile");
-        return "profile";
-    }
 
 
 
