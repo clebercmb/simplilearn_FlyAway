@@ -1,16 +1,70 @@
+<%@ page import="com.example.simplilearn.flyaway.modules.user.adapter.in.command.UserCommand" %>
 <header>
-    <nav class="nav-header">
+    <%
+        HttpSession Session = request.getSession(false);
+        String userEmail= null;
+        String userId="";
+
+        UserCommand user= (UserCommand) session.getAttribute("user");
+        if(user  != null) {
+            userEmail= user.getEmail();
+            userId = user.getUserId()+"";
+
+        }
+    %>
+
+    <nav class="nav-header fly-header">
         <div class="nav-header-left">
-            <a class="nav-link active" aria-current="page" href="home">Home</a>
-            <a class="nav-link" href="booking-tickets">Book Tickets</a>
-            <a class="nav-link active" aria-current="page" href="flight-dashboard">Flights DashBoard</a>
-            <a class="nav-link" href="place-dashboard">Place Dashboard</a>
+
+            <%
+                if( user == null || !user.getGroupName().equals("admin")) {
+            %>
+                <a class="nav-link active" aria-current="page" href="home">Home</a>
+            <%
+                }
+            %>
+
+
+            <%
+                if( user != null && !user.getGroupName().equals("admin")) {
+            %>
+                <a class="nav-link" href="booking-tickets">Book Tickets</a>
+            <%
+                }
+            %>
+
+            <%
+                if( user != null && user.getGroupName().equals("admin")) {
+            %>
+                <a class="nav-link active" aria-current="page" href="flight-dashboard">Flights DashBoard</a>
+                <a class="nav-link" href="place-dashboard">Place Dashboard</a>
+            <%
+                }
+            %>
+
+
         </div>
 
         <div class="nav-header-right">
-            <a class="nav-link" href="profile">Profile</a>
-            <a class="nav-link" href="login">Customer Login</a>
-            <a class="nav-link" href="login">Admin Login</a>
+
+            <%
+                if(userEmail == null) {
+            %>
+                <a class="nav-link" href="login">Login</a>
+            <%
+                }
+            %>
+
+            <%
+                if(userEmail != null) {
+            %>
+                <a class="nav-link" href="<%=request.getContextPath()%>/profile?id=<%=userId%>"><%=userEmail%></a>
+                <a class="nav-link" href="logout">Logout</a>
+
+            <%
+                }
+            %>
+
         </div>
     </nav>
 </header>

@@ -105,7 +105,8 @@ public class UserController {
     public String validateLogin(@ModelAttribute("userCommand") UserCommand userCommand, Model map, HttpServletRequest request) {
         System.out.println("Show validateLogin");
 
-        if(validateUserService.execute(userCommand)) {
+        userCommand = validateUserService.execute(userCommand);
+        if(userCommand != null) {
 
             HttpSession session = request.getSession();
             userCommand.setPassword("");
@@ -125,6 +126,19 @@ public class UserController {
         UserDto userDto = createUserService.execute(userCommand);
 
         return "redirect:/login";
+    }
+
+
+    @RequestMapping("logout")
+    public String logout(HttpServletRequest request) {
+
+        HttpSession session = request.getSession(false);
+        if(session != null) {
+            session.removeAttribute("user");
+            session.invalidate();
+         }
+
+        return "redirect:/home";
     }
 
 }

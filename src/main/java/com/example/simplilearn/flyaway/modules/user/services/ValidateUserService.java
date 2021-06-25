@@ -15,15 +15,18 @@ public class ValidateUserService {
         this.userDao = userDao;
     }
 
-    public boolean execute(UserCommand userCommand) {
+    public UserCommand execute(UserCommand userCommand) {
 
         System.out.println(userCommand);
 
         User user = new User(userCommand);
 
         user = userDao.findByEmail(user.getEmail());
+        if(user != null && user.getPassword().equals(userCommand.getPassword()) && user.getEmail().equals(userCommand.getEmail()) ) {
+            return user.getUserCommand();
+        }
 
-        return user != null && user.getPassword().equals(userCommand.getPassword()) && user.getEmail().equals(userCommand.getEmail());
+        return null;
 
     }
 

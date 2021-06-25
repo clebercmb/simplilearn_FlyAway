@@ -1,5 +1,7 @@
 package com.example.simplilearn.flyaway.modules.user.adapter.in.command;
 
+import com.example.simplilearn.flyaway.modules.user.domain.Group;
+
 public class UserCommand {
 
     private int userId;
@@ -7,6 +9,7 @@ public class UserCommand {
     private String email;
     private String password;
     private int group;
+    private String groupName;
 
     public UserCommand() {
     }
@@ -17,6 +20,7 @@ public class UserCommand {
         this.email = email;
         this.password = password;
         this.group = group;
+        this.groupName = Group.getGroupName(group);
     }
 
     public int getUserId() {
@@ -57,5 +61,14 @@ public class UserCommand {
 
     public void setGroup(int group) {
         this.group = group;
+        this.groupName = Group.getGroupName(group);
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 }
