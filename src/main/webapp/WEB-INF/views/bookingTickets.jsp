@@ -32,8 +32,7 @@
                         <th class="flex-row">Arrive time</th>
                         <th class="flex-row">Passengers</th>
                         <th class="flex-row">Price</th>
-                        <th class="flex-row">Action 1</th>
-                        <th class="flex-row">Action 2</th>
+                        <th class="flex-row">Action</th>
 
                     </tr>
                 </thead>
@@ -46,8 +45,7 @@
                             <td class="flex-row">${booking.flightDto.departureTime}</td>
                             <td class="flex-row">${booking.flightDto.arriveTime}</td>
                             <td class="flex-row">${booking.passengersList.size()}</td>
-                            <td class="flex-row">${booking.flightDto.ticketPrice}</td>
-                            <td class="flex-row"><a class="btn btn-warning" href="<%=request.getContextPath()%>/updateBooking?id=<c:out value="${booking.bookingId}"/>">Edit</a></td>
+                            <td class="flex-row">${booking.flightDto.ticketPrice * booking.passengersList.size() }</td>
                             <td class="flex-row"><a class="btn btn-danger" href="<%=request.getContextPath()%>/deleteBooking?id=<c:out value="${booking.bookingId}"/>">Delete</a></td>
                         </tr>
                     </c:forEach>

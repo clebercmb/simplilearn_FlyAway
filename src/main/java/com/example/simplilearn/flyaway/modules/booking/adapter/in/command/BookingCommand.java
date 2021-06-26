@@ -1,6 +1,7 @@
 package com.example.simplilearn.flyaway.modules.booking.adapter.in.command;
 
 import com.example.simplilearn.flyaway.modules.booking.dto.PassengerDto;
+import com.example.simplilearn.flyaway.modules.flight.adapter.in.command.FlightCommand;
 import com.example.simplilearn.flyaway.modules.flight.dto.FlightDto;
 import com.example.simplilearn.flyaway.modules.user.dto.UserDto;
 
@@ -16,6 +17,8 @@ public class BookingCommand {
 
     private FlightDto flightDto;
     private UserDto userDto;
+
+    private FlightCommand flightCommand;
 
     public BookingCommand() {
     }
@@ -67,5 +70,13 @@ public class BookingCommand {
 
     public void setUserDto(UserDto userDto) {
         this.userDto = userDto;
+    }
+
+    public FlightCommand getFlightCommand() {
+        return flightCommand;
+    }
+
+    public void setFlightCommand(FlightCommand flightCommand) {
+        this.flightCommand = flightCommand;
     }
 }

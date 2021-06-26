@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Flight Bookings</title>
+    <title>Booking Payment</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -22,7 +22,7 @@
 
 
 <div class="container-booking">
-    <h1>Flight Bookings</h1>
+    <h1>Booking Payment</h1>
 
     <div class="user-information">
         <h4>Flight Information</h4>
@@ -39,7 +39,7 @@
             <label><Strong>Arrive Time :</Strong><span>${flight.arriveTime}</span></label>
         </div>
         <div>
-            <label><Strong>Available seats :</Strong><span>10</span></label>
+            <label><Strong>Total Price :</Strong><span>${flight.ticketPrice * passengers.size()}</span></label>
         </div>
 
     </div>
@@ -55,21 +55,20 @@
 
         </div>
 
-        <sform:form method="post" action="payment-booking" modelAttribute="bookingCommand" class="container-booking-data">
-            <input type="hidden" id="flightId" name="flightId" value="${flight.flightId}"/>
+        <c:forEach var="passenger"  items="${passengers}" varStatus="loop">
 
-            <c:forEach var = "i" begin = "0" end = "${numberOfPassengers-1}">
-                <div class="passenger">
-                    <label for="fname${i}">${i+1}</label>
-                    <input type="text" id="fname${i}" name="passengersList[${i}].firstName"/>
-                    <input type="text" id="lname${i}" name="passengersList[${i}].lastName"/>
-                    <input type="email" id="email${i}" name="passengersList[${i}].email"/>
-                </div>
-            </c:forEach>
+            <div class="passenger">
+                <label>${loop.index+1}</label>
+                <label>${passenger.firstName}</label>
+                <label>${passenger.lastName}</label>
+                <label>${passenger.email}</label>
+            </div>
+        </c:forEach>
 
+            <br/>
+            <a class="btn btn-warning" href="<%=request.getContextPath()%>/create-booking?id=<c:out value="${flight.flightId}"/>">Confirm Payment</a>
+            <a class="btn btn-danger" href="cancelBooking">Cancel the Booking</a>
 
-            <input type="submit" value="Submit">
-        </sform:form>
     </div>
 
 

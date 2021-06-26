@@ -1,6 +1,7 @@
 package com.example.simplilearn.flyaway.modules.booking.adapter.in.controller;
 
 import com.example.simplilearn.flyaway.modules.booking.adapter.in.command.BookingCommand;
+import com.example.simplilearn.flyaway.modules.booking.dto.BookingDto;
 import com.example.simplilearn.flyaway.modules.booking.services.*;
 import com.example.simplilearn.flyaway.modules.flight.adapter.in.command.FlightCommand;
 import com.example.simplilearn.flyaway.modules.flight.services.ReadFlightService;
@@ -55,21 +56,42 @@ public class BookingController {
         return "booking";
     }
 
-    @RequestMapping(value = "create-booking", method = RequestMethod.POST)
-    public String post(@ModelAttribute("bookingCommand") BookingCommand booking, Model map, HttpServletRequest request) {
+    @RequestMapping(value = "create-booking", method = RequestMethod.GET)
+//    public String post(@ModelAttribute("bookingCommand") BookingCommand booking, Model map, HttpServletRequest request) {
+    public String post(HttpServletRequest request) {
 
         HttpSession session = request.getSession(false);
         UserCommand user= (UserCommand) session.getAttribute("user");
-
-        user = new UserCommand();
-        user.setUserId(1);
+        BookingCommand booking= (BookingCommand) session.getAttribute("booking");
 
         booking.setUserDto(new UserDto(user));
 
-        createBookingService.execute(booking);
+        BookingDto bookingDto = createBookingService.execute(booking);
+
+        session.setAttribute("booking", null);
 
         return "redirect:/booking-tickets";
     }
+
+
+    @RequestMapping(value = "payment-booking", method = RequestMethod.POST)
+    public String payment(@ModelAttribute("bookingCommand") BookingCommand booking, Model map, HttpServletRequest request) {
+
+        HttpSession session = request.getSession(false);
+
+        FlightCommand flight = readFlightService.execute(booking.getFlightId());
+
+        map.addAttribute("flight", flight);
+        map.addAttribute( "passengers", booking.getPassengersList());
+
+        booking.setFlightCommand(flight);
+        booking.setPassengersList(booking.getPassengersList());
+
+        session.setAttribute("booking", booking);
+
+        return "bookingPayment";
+    }
+
 
 
     @RequestMapping("booking-tickets")
@@ -96,6 +118,16 @@ public class BookingController {
 
         return "redirect:/booking-tickets";
     }
+
+    @RequestMapping("cancelBooking")  // default GET
+    public String delete(HttpServletRequest request) {
+
+        HttpSession session = request.getSession(false);
+        session.setAttribute("booking", null);
+
+        return "redirect:/booking-tickets";
+    }
+
 
 
 }
