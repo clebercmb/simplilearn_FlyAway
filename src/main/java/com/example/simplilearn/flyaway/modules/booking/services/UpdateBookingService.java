@@ -19,7 +19,7 @@ public class UpdateBookingService {
 
         System.out.println(placeCommand);
 
-        Booking booking = new Booking(); //Booking(placeCommand);
+        Booking booking = new Booking(placeCommand);
 
         booking = bookingDao.update(booking);
 

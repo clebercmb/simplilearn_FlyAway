@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,42 +38,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="flex-table">
-                        <td class="flex-row"><a href="booking" title="Click here to book a trip">Toronto</a></td>
-                        <td class="flex-row">Sao Paulo</td>
-                        <td class="flex-row">XP123</td>
-                        <td class="flex-row">2021-10-01 09AM</td>
-                        <td class="flex-row">2021-11-02 11PM</td>
-                        <td class="flex-row">4</td>
-                        <td class="flex-row">2.000</td>
-                        <td class="flex-row"><button class="btn btn-warning">Edit</button></td>
-                        <td class="flex-row"><button class="btn btn-danger">Delete</button></td>
-                    </tr>
+                    <c:forEach var="booking"  items="${bookingList}">
+                        <tr class="flex-table">
+                            <td class="flex-row">${booking.flightDto.from.name}</td>
+                            <td class="flex-row">${booking.flightDto.to.name}</td>
+                            <td class="flex-row">${booking.flightDto.flightNumber}</td>
+                            <td class="flex-row">${booking.flightDto.departureTime}</td>
+                            <td class="flex-row">${booking.flightDto.arriveTime}</td>
+                            <td class="flex-row">${booking.passengersList.size()}</td>
+                            <td class="flex-row">${booking.flightDto.ticketPrice}</td>
+                            <td class="flex-row"><a class="btn btn-warning" href="<%=request.getContextPath()%>/updateBooking?id=<c:out value="${booking.bookingId}"/>">Edit</a></td>
+                            <td class="flex-row"><a class="btn btn-danger" href="<%=request.getContextPath()%>/deleteBooking?id=<c:out value="${booking.bookingId}"/>">Delete</a></td>
+                        </tr>
+                    </c:forEach>
 
-
-                    <tr class="flex-table">
-                        <td class="flex-row">Catar</td>
-                        <td class="flex-row">Berlim</td>
-                        <td class="flex-row">XP123</td>
-                        <td class="flex-row">2021-10-01 09AM</td>
-                        <td class="flex-row">2021-11-02 11PM</td>
-                        <td class="flex-row">4</td>
-                        <td class="flex-row">2.000</td>
-                        <td class="flex-row"><button class="btn btn-warning">Edit</button></td>
-                        <td class="flex-row"><button class="btn btn-danger">Delete</button></td>
-                    </tr>
-
-                    <tr class="flex-table">
-                        <td class="flex-row">Milan</td>
-                        <td class="flex-row">New York</td>
-                        <td class="flex-row">XP123</td>
-                        <td class="flex-row">2021-10-01 09AM</td>
-                        <td class="flex-row">2021-11-02 11PM</td>
-                        <td class="flex-row">4</td>
-                        <td class="flex-row">2.000</td>
-                        <td class="flex-row"><button class="btn btn-warning">Edit</button></td>
-                        <td class="flex-row"><button class="btn btn-danger">Delete</button></td>
-                    </tr>
                 </tbody>
 
             </table>

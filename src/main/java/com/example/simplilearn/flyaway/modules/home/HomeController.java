@@ -17,14 +17,4 @@ public class HomeController {
     }
 
 
-
-    @RequestMapping("booking-tickets")
-    public String showBookingTickets() {
-        System.out.println("showBookingTickets");
-        return "bookingTickets";
-    }
-
-
-
-
 }

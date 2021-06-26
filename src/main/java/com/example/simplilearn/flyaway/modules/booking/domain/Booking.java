@@ -21,20 +21,20 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="booking_id")
-    private int bookingId;
+    private Integer bookingId;
 
 
     @OneToOne(targetEntity = Flight.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_flight_id", referencedColumnName = "flight_id")
     private Flight flight;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_user_id", referencedColumnName = "user_id")
     private User user;
 
 
-    @OneToMany(targetEntity = Passenger.class, cascade =  CascadeType.ALL)
-    private Set<Passenger> passengers;
+    @OneToMany(targetEntity = Passenger.class, cascade =  CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Passenger> passengers=new HashSet<>();
 
     public Booking() {
     }
@@ -48,27 +48,27 @@ public class Booking {
         this.setPassengers(passengers);
     }
 
-   /* public Booking(BookingCommand bookingCommand) {
-        this.setBookingId( bookingCommand.getBookingId() );
-        this.setUser( bookingCommand.getUserDto().getUser());
-        this.setFlight( bookingCommand.getFlightDto().getFlight());
+   public   Booking(BookingCommand bookingCommand) {
+        this.bookingId = bookingCommand.getBookingId();
+        this.user  = bookingCommand.getUserDto().getUser();
+        this.flight = bookingCommand.getFlightDto().getFlight();
         Set<Passenger> passengers = new HashSet<>();
-        bookingCommand.getPassengers2().forEach(p -> passengers.add(p.getPassenger()));
-        this.setPassengers(passengers);
-    }*/
+        bookingCommand.getPassengersList().forEach(p -> passengers.add(p.getPassenger()));
+        this.passengers = passengers;
+    }
 
-    public Booking(int bookingId, Flight flight, User user, Set<Passenger> passengers) {
+    public Booking(Integer bookingId, Flight flight, User user, Set<Passenger> passengers) {
         this.bookingId = bookingId;
         this.flight = flight;
         this.user = user;
         this.passengers = passengers;
     }
 
-    public int getBookingId() {
+    public Integer getBookingId() {
         return bookingId;
     }
 
-    public void setBookingId(int bookingId) {
+    public void setBookingId(Integer bookingId) {
         this.bookingId = bookingId;
     }
 
@@ -122,7 +122,7 @@ public class Booking {
         return bookingDto;
     }
 
-    /*public BookingCommand getBookingCommand() {
+    public BookingCommand getBookingCommand() {
 
         BookingCommand bookingCommand = new BookingCommand();
 
@@ -135,10 +135,11 @@ public class Booking {
             this.passengers.stream().sorted((p1,p2) -> p1.getFirstName().compareTo(p2.getFirstName())).forEach(p->passengers.add(p.getPassengerDto()));
         }
 
-        bookingCommand.setPassengers2(passengers);
+        bookingCommand.setPassengersList(passengers);
 
         return bookingCommand;
-    }*/
+    }
+
 
 
 }

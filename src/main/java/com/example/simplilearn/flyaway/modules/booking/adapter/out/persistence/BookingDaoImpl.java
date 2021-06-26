@@ -4,7 +4,12 @@ import com.example.simplilearn.flyaway.config.HibernateUtil;
 import com.example.simplilearn.flyaway.modules.booking.domain.Booking;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Component;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 @Component
@@ -68,10 +73,33 @@ public class BookingDaoImpl extends BookingDao {
     }
 
     protected String getQueryFindAll() {
-        return "from Place order by name";
+        return "from Booking order by flight.departureTime";
     }
     protected String getQueryDelete() {
-        return "delete from Place where placeId = :id";
+        return "delete from Booking where bookingId = :id";
     }
 
+
+    public List<Booking> findBookingByUserId(Integer userId) {
+
+        System.out.println("$$$$$$$$$IDao.findAll="+ getQueryFindAll());
+        List<Booking> items = null;
+
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            Query<Booking> query = session.createQuery("from Booking where user.userId = :userId order by flight.departureTime");
+            query.setParameter("userId", userId);
+            items = query.list();
+            session.close();
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            throw new ExceptionInInitializerError(ex);
+        }
+
+        return items;
+
+
+    }
 }

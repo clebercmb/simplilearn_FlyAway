@@ -19,7 +19,7 @@ public class ReadBookingService {
 
         Booking booking = bookingDao.read(id);
 
-        return null; //booking.getBookingCommand();
+        return booking.getBookingCommand();
 
     }
 

@@ -11,26 +11,24 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class ReadAllBookingService {
+public class ReadBookingByUserIdService {
 
     private final BookingDao bookingDao;
 
-    public ReadAllBookingService(BookingDao bookingDao) {
+    public ReadBookingByUserIdService(BookingDao bookingDao) {
         this.bookingDao = bookingDao;
     }
 
-    public List<BookingCommand> execute() {
-        Set<Booking> placesSet = bookingDao.readAll();
+    public List<BookingCommand> execute(Integer userID) {
+        List<Booking>  bookingList = bookingDao.findBookingByUserId(userID);
 
+        List<BookingCommand> bookingCommandList = new ArrayList<>();
 
-
-        List<BookingCommand> placesList = new ArrayList<>();
-        for(Booking booking : placesSet) {
-            placesList.add( booking.getBookingCommand() );
+        for(Booking booking: bookingList) {
+            bookingCommandList.add(booking.getBookingCommand());
         }
 
-        return placesList.stream().sorted( (b1, b2)  -> b1.getFlightDto().getDepartureTime().compareTo(b2.getFlightDto().getDepartureTime())  ).collect(Collectors.toList());
-
+            return bookingCommandList;
     }
 
 }

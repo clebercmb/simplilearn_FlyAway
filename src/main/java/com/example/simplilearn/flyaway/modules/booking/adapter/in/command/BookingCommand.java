@@ -28,11 +28,11 @@ public class BookingCommand {
         this.userDto = userDto;
     }
 
-    public int getBookingId() {
+    public Integer getBookingId() {
         return bookingId;
     }
 
-    public void setBookingId(int bookingId) {
+    public void setBookingId(Integer bookingId) {
         this.bookingId = bookingId;
     }
 
@@ -59,10 +59,6 @@ public class BookingCommand {
 
     public void setFlightId(Integer flightId) {
         this.flightId = flightId;
-    }
-
-    public void setBookingId(Integer bookingId) {
-        this.bookingId = bookingId;
     }
 
     public UserDto getUserDto() {

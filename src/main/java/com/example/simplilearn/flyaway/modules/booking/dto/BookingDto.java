@@ -11,7 +11,7 @@ import java.util.Set;
 
 public class BookingDto {
 
-    private int bookingId;
+    private Integer bookingId;
     private FlightDto flight;
     private UserDto user;
     private List<PassengerDto> passengers;
@@ -19,18 +19,18 @@ public class BookingDto {
     public BookingDto() {
     }
 
-    public BookingDto(int bookingId, FlightDto flight, UserDto user, List<PassengerDto> passengers) {
+    public BookingDto(Integer bookingId, FlightDto flight, UserDto user, List<PassengerDto> passengers) {
         this.bookingId = bookingId;
         this.flight = flight;
         this.user = user;
         this.passengers = passengers;
     }
 
-    public int getBookingId() {
+    public Integer getBookingId() {
         return bookingId;
     }
 
-    public void setBookingId(int bookingId) {
+    public void setBookingId(Integer bookingId) {
         this.bookingId = bookingId;
     }
 
