@@ -1,5 +1,6 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="sform" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,16 +27,16 @@
     <div class="user-information">
         <h4>Flight Information</h4>
         <div>
-            <label><Strong>Flight Number :</Strong><span>XP123</span></label>
-            <label><Strong>Price :</Strong><span>2.000</span></label>
+            <label><Strong>Flight Number :</Strong><span>${flight.flightNumber}</span></label>
+            <label><Strong>Ticket Price :</Strong><span>${flight.ticketPrice}</span></label>
         </div>
         <div>
-            <label><Strong>From :</Strong><span>Toronto</span></label>
-            <label><Strong>To :</Strong><span>New York</span></label>
+            <label><Strong>From :</Strong><span>${flight.from}</span></label>
+            <label><Strong>To :</Strong><span>${flight.to}</span></label>
         </div>
         <div>
-            <label><Strong>Departure Time :</Strong><span>2021-10-01 09AM</span></label>
-            <label><Strong>Arrive Time :</Strong><span>2021-10-01 10P</span></label>
+            <label><Strong>Departure Time :</Strong><span>${flight.departureTime}</span></label>
+            <label><Strong>Arrive Time :</Strong><span>${flight.arriveTime}</span></label>
         </div>
         <div>
             <label><Strong>Available seats :</Strong><span>10</span></label>
@@ -46,7 +47,6 @@
     <div class="passengers-information">
         <h4>Passengers Information</h4>
 
-
         <div class="passenger">
             <label class="header"><b>#</b></label>
             <label class="header"><b>First name:</b></label>
@@ -54,29 +54,30 @@
             <label class="header"><b>Email:</b></label>
 
         </div>
-        <form>
-            <div class="passenger">
+
+        <sform:form method="post" action="create-booking" modelAttribute="bookingCommand" class="container-booking-data">
+            <input type="hidden" id="flightId" name="flightId" value="${flight.flightId}"/>
+
+            <c:forEach var = "i" begin = "0" end = "${numberOfPassengers-1}">
+                <div class="passenger">
+                    <label for="fname${i}">${i+1}</label>
+                    <input type="text" id="fname${i}" name="passengersList[${i}].firstName"/>
+                    <input type="text" id="lname${i}" name="passengersList[${i}].lastName"/>
+                    <input type="email" id="email${i}" name="passengersList[${i}].email"/>
+                </div>
+            </c:forEach>
+
+
+
+            <!--div class="passenger">
                 <label for="fname1">#1</label>
-                <input type="text" id="fname1" name="fname1"/>
-                <input type="text" id="lname1" name="lname1"/>
-                <input type="email" id="email1" name="email1"/>
-            </div>
-            <div class="passenger">
-                <label for="fname2">#2</label>
-                <input type="text" id="fname2" name="fname2"/>
-                <input type="text" id="lname2" name="lname2"/>
-                <input type="email" id="email2" name="email2"/>
-            </div>
-            <div class="passenger">
-                <label for="fname2">#3</label>
-                <input type="text" id="fname2" name="fname2"/>
-                <input type="text" id="lname2" name="lname2"/>
-                <input type="email" id="email2" name="email2"/>
-            </div>
+                <input type="text" id="fname1" name="passengersList[0].firstName"/>
+                <input type="text" id="lname1" name="passengersList[0].lastName"/>
+                <input type="email" id="email1" name="passengersList[0].email"/>
+            </div-->
 
             <input type="submit" value="Submit">
-
-        </form>
+        </sform:form>
     </div>
 
 

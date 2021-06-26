@@ -2,6 +2,7 @@ package com.example.simplilearn.flyaway.modules.user.dto;
 
 import com.example.simplilearn.flyaway.modules.user.adapter.in.command.UserCommand;
 import com.example.simplilearn.flyaway.modules.user.domain.Group;
+import com.example.simplilearn.flyaway.modules.user.domain.User;
 
 public class UserDto {
 
@@ -69,5 +70,15 @@ public class UserDto {
 
     public void setGroup(int group) {
         this.group = group;
+    }
+
+    public User getUser() {
+        User user = new User();
+        user.setUserId(this.userId);
+        user.setName(this.name);
+        user.setEmail(this.email);
+        user.setGroup(this.group);
+        user.setPassword(this.password);
+        return user;
     }
 }

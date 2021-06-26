@@ -46,7 +46,7 @@
 
             <!--Sign in-->
             <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <sform:form method="post" action="validate-login" modelAttribute="userCommand" class="container-place-data">
+                <sform:form method="post" action="validate-login" modelAttribute="userCommand" class="container-booking-data">
 
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
@@ -67,7 +67,7 @@
 
             <!--Sign up-->
             <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <sform:form method="post" action="create-user" modelAttribute="userCommand" class="container-place-data">
+                <sform:form method="post" action="create-user" modelAttribute="userCommand" class="container-booking-data">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" id="name" name="name" aria-describedby="name">

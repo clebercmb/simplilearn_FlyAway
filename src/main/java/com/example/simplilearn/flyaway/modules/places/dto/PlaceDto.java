@@ -1,6 +1,7 @@
 package com.example.simplilearn.flyaway.modules.places.dto;
 
 import com.example.simplilearn.flyaway.modules.places.adapter.in.command.PlaceCommand;
+import com.example.simplilearn.flyaway.modules.places.domain.Place;
 import com.sun.istack.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -15,7 +16,6 @@ public class PlaceDto {
     }
 
     public PlaceDto(PlaceCommand placeCommand) {
-
 
     }
 
@@ -40,7 +40,12 @@ public class PlaceDto {
         this.name = name;
     }
 
-
+    public Place getPlace() {
+        Place place = new Place();
+        place.setPlaceId(this.placeId);
+        place.setName(this.name);
+        return place;
+    }
 
 
     @Override

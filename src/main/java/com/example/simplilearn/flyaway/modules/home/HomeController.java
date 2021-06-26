@@ -16,11 +16,7 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping("booking")
-    public String showBooking() {
-        System.out.println("show Booking");
-        return "booking";
-    }
+
 
     @RequestMapping("booking-tickets")
     public String showBookingTickets() {

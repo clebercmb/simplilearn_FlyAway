@@ -5,6 +5,8 @@ import com.example.simplilearn.flyaway.modules.user.adapter.in.command.UserComma
 import com.example.simplilearn.flyaway.modules.user.dto.UserDto;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -27,6 +29,8 @@ public class User {
 
     @Column(name="users_group")
     private int group;
+
+
 
     public User() {
     }
@@ -111,6 +115,7 @@ public class User {
 
         return userDto;
     }
+
 
 
 }

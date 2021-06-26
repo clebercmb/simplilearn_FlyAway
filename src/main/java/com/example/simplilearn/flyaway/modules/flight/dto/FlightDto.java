@@ -1,6 +1,7 @@
 package com.example.simplilearn.flyaway.modules.flight.dto;
 
 import com.example.simplilearn.flyaway.modules.flight.adapter.in.command.FlightCommand;
+import com.example.simplilearn.flyaway.modules.flight.domain.Flight;
 import com.example.simplilearn.flyaway.modules.places.dto.PlaceDto;
 import com.sun.istack.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -110,6 +111,19 @@ public class FlightDto {
         this.ticketPrice = ticketPrice;
     }
 
+    public Flight getFlight() {
+        Flight flight = new Flight();
+        flight.setFlightId(this.flightId);
+        flight.setFrom(this.from.getPlace());
+        flight.setTo(this.to.getPlace());
+        flight.setTicketPrice(this.ticketPrice);
+        flight.setSeatsCapacity(this.seatsCapacity);
+        flight.setFlightNumber(this.flightNumber);
+        flight.setArriveTime(this.arriveTime);
+        flight.setDepartureTime(this.departureTime);
+
+        return flight;
+    }
 
     @Override
     public String toString() {
