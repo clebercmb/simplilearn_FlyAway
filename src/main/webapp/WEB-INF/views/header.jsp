@@ -37,7 +37,7 @@
                 if( user != null && user.getGroupName().equals("admin")) {
             %>
                 <a class="nav-link active" aria-current="page" href="flight-dashboard">Flights DashBoard</a>
-                <a class="nav-link" href="booking-dashboard">Place Dashboard</a>
+                <a class="nav-link" href="place-dashboard">Place Dashboard</a>
             <%
                 }
             %>
