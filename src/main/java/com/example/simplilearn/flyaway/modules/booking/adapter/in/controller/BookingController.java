@@ -47,9 +47,14 @@ public class BookingController {
 
     @RequestMapping("booking")
     //public String showBooking(@ModelAttribute("bookingCommand") BookingCommand booking, Model map, @RequestParam String id, @RequestParam String passengers) {
-    public String showBooking(@ModelAttribute("bookingCommand") BookingCommand booking, Model map, @RequestParam String id, @RequestParam String passengers) {
+    public String showBooking(@ModelAttribute("bookingCommand") BookingCommand booking, Model map, @RequestParam String id, @RequestParam String passengers, HttpServletRequest request) {
 
-        System.out.println("show Booking");
+        HttpSession session = request.getSession(false);
+        UserCommand user= (UserCommand) session.getAttribute("user");
+        if(user == null) {
+            return "login";
+        }
+
         FlightCommand flightCommand = readFlightService.execute(Integer.parseInt(id));
         map.addAttribute("flight", flightCommand);
         map.addAttribute("numberOfPassengers", Integer.parseInt(passengers));
@@ -96,13 +101,9 @@ public class BookingController {
 
     @RequestMapping("booking-tickets")
     public String showBookingTickets(Model map, HttpServletRequest request) {
-        System.out.println("showBookingTickets");
 
         HttpSession session = request.getSession(false);
         UserCommand user= (UserCommand) session.getAttribute("user");
-
-        user = new UserCommand();
-        user.setUserId(1);
 
         List<BookingCommand> bookingCommandList = readBookingByUserIdService.execute(user.getUserId());
 
